@@ -1,0 +1,7 @@
+.row {
+    @apply flex flex-wrap -ml-4;
+}
+
+.col {
+    @apply pl-4 w-full;
+}

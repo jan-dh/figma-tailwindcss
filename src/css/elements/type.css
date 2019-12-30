@@ -1,0 +1,13 @@
+html {
+    font-size: 100%;
+}
+
+body {
+    @apply font-sans leading-normal;
+}
+
+p {
+    @apply;
+}
+
+/* Always include woff version for IE11 */

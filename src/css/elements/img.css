@@ -1,0 +1,16 @@
+/**
+ * 1. Make images "block" by default. Lazysizes needs the width of an image, to
+ * calculate the sizes attribute. It's easy to forget adding "display: block".
+ * You also wouldn't notice anything, srcset would just use the wrong image.
+ *
+ * On the other hand, you will notice it if you need "display: inline".
+ *
+ * There's also this issue:
+ * https://github.com/aFarkas/lazysizes/issues/209
+ *
+ * So just using "display: block" makes lazysizes more robust.
+ */
+img {
+    display: block; /* 1 */
+    vertical-align: middle;
+}

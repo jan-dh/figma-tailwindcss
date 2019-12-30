@@ -1,0 +1,7 @@
+.container {
+    @apply mx-auto px-4;
+    max-width: 680px;
+    @screen md {
+        @apply px-8;
+    }
+}

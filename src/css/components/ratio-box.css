@@ -1,0 +1,18 @@
+.ratio-box {
+    position: relative;
+    display: block;
+}
+
+.ratio-box__placeholder {
+    display: block;
+    padding-bottom: 100%;
+    background-color: rgba(0, 0, 0, .05);
+}
+
+.ratio-box__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}

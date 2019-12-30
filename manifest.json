@@ -1,0 +1,7 @@
+{
+    "name": "Figma Tailwindcss",
+    "id": "785619431629077634",
+    "api": "1.0.0",
+    "main": "dist/code.js",
+    "ui": "dist/ui.html"
+}

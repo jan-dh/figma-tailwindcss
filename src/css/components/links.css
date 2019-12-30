@@ -1,0 +1,40 @@
+.button {
+    @apply inline-flex justify-center items-center rounded-lg px-4 font-semibold leading-tight shadow-md;
+    min-height: 44px;
+    transition: 0.15s ease-in;
+    &:focus {
+        @apply outline-none shadow-outline;
+    }
+}
+
+.button--white {
+    @apply bg-white text-gray-800 font-semibold;
+    &:hover {
+        @apply bg-gray-200;
+    }
+}
+
+.button--grey {
+    @apply bg-gray-300 text-gray-800 font-bold;
+    &:hover {
+        @apply bg-gray-400;
+    }
+}
+
+.button--green {
+    @apply bg-teal-500 text-white;
+    &:hover {
+        @apply bg-teal-600;
+    }
+}
+
+.button--disabled {
+    @apply bg-gray-400 text-white;
+}
+
+.text-link {
+    @apply text-blue-600;
+    &:hover {
+        @apply text-blue-800;
+    }
+}

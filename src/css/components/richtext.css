@@ -1,0 +1,63 @@
+.richtext {
+    @apply text-gray-700;
+    h2:first-child,
+    h3:first-child,
+    p:first-child {
+        @apply mt-0;
+    }
+    p {
+        @apply mt-4;
+    }
+    h2 {
+        @apply .t-beta mt-4;
+    }
+
+    h3 {
+        @apply .t-gamma mt-4;
+    }
+    ul,
+    ol {
+        @apply mt-4;
+    }
+    ol {
+        @apply list-decimal list-inside;
+    }
+    ul > li,
+    ol > li {
+        @apply relative mt-2;
+    }
+    ul > li {
+        @apply pl-5;
+    }
+    ul > li:before {
+        content: '';
+        top: 9px;
+        left: 0;
+        border-radius: 50%;
+        width: 5px;
+        height: 5px;
+        @apply absolute bg-blue-600;
+    }
+    ul > li + ul {
+        @apply pl-6;
+    }
+    ul > li + ul > li + ul {
+        @apply pl-12;
+    }
+    a {
+        @apply text-blue-600 underline;
+        &:hover {
+            @apply text-blue-800;
+        }
+    }
+    pre code {
+        @apply p-4 my-4 block overflow-auto text-sm leading-normal bg-gray-200 rounded;
+    }
+    code {
+        padding: 0.2em 0.4em;
+        margin: 0;
+        font-size: 85%;
+        background-color: rgba(27, 31, 35, 0.05);
+        border-radius: 3px;
+    }
+}

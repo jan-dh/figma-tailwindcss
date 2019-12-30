@@ -1,0 +1,15 @@
+.t-alpha {
+    @apply text-5xl;
+}
+
+.t-beta {
+    @apply text-2xl font-bold;
+}
+
+.t-gamma {
+    @apply text-xl text-gray-900 font-medium leading-tight;
+}
+
+.intro {
+    @apply text-gray-600;
+}

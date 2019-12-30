@@ -1,0 +1,97 @@
+.form-field {
+    /* @apply px-2; */
+}
+
+/**
+ * Use flex to remove spacing from label. We could also put display block
+ * on the label but that would make it clickable accross the whole width.
+ */
+.form-label-wrapper {
+    @apply mb-2 flex flex-col items-start;
+}
+
+.form-label {
+    @apply leading-tight;
+}
+
+.form-instructions {
+    @apply text-sm;
+}
+
+/**
+ * 1. Height copied from the inspector. This hacky height is necessary for
+ * Chrome. The height on the date input field was always wrong.
+ */
+.form-control {
+    @apply block w-full py-0 px-2 border leading-normal rounded bg-white;
+    height: 44px; /* 1 */
+}
+
+.form-control:focus {
+    @apply outline-none border-black;
+}
+
+.form-control--textarea {
+    height: auto;
+}
+
+/**
+ * 1. Update color of arrow in the fill attribute. %23 is an encoded hashtag.
+ */
+.form-control--select {
+    padding-right: 2rem;
+    box-sizing: border-box;
+    appearance: none;
+    background-size: 13px 7px;
+    background-position: calc(100% - 0.75rem) 50%;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.57 14'%3E%3Cpath fill='%23000000' d='M13.28 14a1.62 1.62 0 0 0 1-.39L26.11 2.52a1.4 1.4 0 0 0 .05-2 1.4 1.4 0 0 0-2 0L13.28 10.57 2.42.39a1.44 1.44 0 0 0-2 2.08l11.82 11.1a1.48 1.48 0 0 0 1.04.43z'/%3E%3C/svg%3E"); /* 1 */
+}
+
+.form-checkbox,
+.form-radio {
+    @apply inline-flex items-center;
+}
+
+.form-checkbox__input,
+.form-radio__input {
+    @apply absolute opacity-0;
+}
+
+.form-checkbox__replacement,
+.form-radio__replacement {
+    @apply bg-white border relative mr-1;
+
+    display: block;
+    height: 1rem;
+    width: 1rem;
+}
+
+.form-radio__replacement {
+    @apply rounded-full;
+}
+
+.form-checkbox__input:focus + .form-checkbox__replacement,
+.form-radio__input:focus + .form-radio__replacement {
+    @apply border-black;
+}
+
+.form-checkbox__input:checked + .form-checkbox__replacement::before,
+.form-radio__input:checked + .form-radio__replacement::before {
+    @apply absolute inset-0 bg-black;
+    content: '';
+    margin: 2px;
+}
+
+.form-radio__input:checked + .form-radio__replacement::before {
+    @apply rounded-full;
+}
+
+.form-checkbox__label,
+.form-radio__label {
+    @apply pr-2;
+}
+
+.hf-warning {
+    @apply text-sm leading-tight mt-1;
+}
