@@ -66,7 +66,7 @@ module.exports = {
     }
 ```
 
-#### Overriding the default theme
+#### Extending the default theme
 
 Using the spread operator at the end of each property you can add your theme values to an existing config or to the default tailwind config.
 
