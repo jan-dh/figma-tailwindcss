@@ -26,7 +26,7 @@ const FontSizes = () => {
         Pick a base font-size
       </label>
       <select
-        className="form-control form-control--select"
+        className="form-control form-control--select mt-2"
         value={baseFontSize}
         onChange={updateFontSizes}
       >
