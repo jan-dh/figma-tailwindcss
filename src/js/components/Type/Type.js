@@ -25,16 +25,17 @@ const Type = () => {
     }
   };
 
-  const buttonClass = baseFontSize
-    ? 'button button--green'
-    : 'button button--green opacity-50';
+  const buttonClass =
+    baseFontSize || !hasSizes
+      ? 'button button--green'
+      : 'button button--green opacity-50';
 
   return (
     <div className="row">
       <div className="col">
         <div className="w-full border-b border-gray-200 py-4">
           <h2 className="t-beta">Typography</h2>
-          <p className="intro">Some type intro here</p>
+          <p className="intro">Font families and font sizes</p>
         </div>
         <h3 className="t-gamma mt-4">Font families</h3>
         {hasFamilies ? (
