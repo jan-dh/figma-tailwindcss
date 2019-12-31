@@ -14,7 +14,7 @@ A plugin that tries to bridge the gap between design and code. Figma Tailwindcss
 
 ### Creating your theme
 
-The plugin gets it's info from the Layer Styles and Text Styles. At this point it picks up:
+The plugin gets it's info from the Local Paint Styles and Local Text Styles. At this point it picks up:
 
 -   colors
 -   font-families
