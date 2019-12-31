@@ -1,12 +1,19 @@
 const messages = {
-  emptyColors: ['ooow, no colors?  😢', 'hmmm, I see you have no colors 🧐'],
+  emptyColors: [
+    'Ooow, no colors?  😢',
+    'hmmm, I see you have no colors  🧐',
+    'Care to add some colors? 🎨',
+    'Add some colors 🌈 to brighten your day 😎'
+  ],
   emptyFamilies: [
-    'ooow, no font families?  😢',
-    'hmmm, I see you have no font families 🧐'
+    'I guess not every project needs a font family 🤷‍♂️',
+    'Default font stacks can do just fine 🤓',
+    'Always time to add them later 😉'
   ],
   emptySizes: [
-    'ooow, no font sizes?  😢',
-    'hmmm, I see you have no font sizes 🧐'
+    'No sizes? no problem! 👍',
+    "Ah, you're going with the default font sizes, neat! 🤙",
+    'No font sizes detected 🤖'
   ]
 };
 
