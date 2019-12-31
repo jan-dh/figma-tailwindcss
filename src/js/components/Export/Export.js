@@ -78,7 +78,7 @@ const Export = () => {
           Previous
         </Link>
         <Link to="/info" className="button button--green">
-          Usage
+          Next
         </Link>
       </div>
     </div>
@@ -86,10 +86,3 @@ const Export = () => {
 };
 
 export default Export;
-
-// <button
-//   className={`button absolute top-0 right-0 mr-4 mt-4 ${buttonClass}`}
-//   onClick={groupColors}
-// >
-//   {buttonText}
-// </button>
