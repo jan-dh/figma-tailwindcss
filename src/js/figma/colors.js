@@ -19,13 +19,15 @@ export default function() {
   }
 
   colorStyles.forEach((style) => {
-    const { name } = style;
-    const r = Math.round(255 * style.paints[0].color.r);
-    const g = Math.round(255 * style.paints[0].color.g);
-    const b = Math.round(255 * style.paints[0].color.b);
-    const value = makeHex(r, g, b);
-    const result = { name, value };
-    hexValueAndName.push(result);
+    if (style.paints[0].color){
+      const { name } = style;
+      const r = Math.round(255 * style.paints[0].color.r);
+      const g = Math.round(255 * style.paints[0].color.g);
+      const b = Math.round(255 * style.paints[0].color.b);
+      const value = makeHex(r, g, b);
+      const result = { name, value };
+      hexValueAndName.push(result);  
+    }
   });
 
   return hexValueAndName;
