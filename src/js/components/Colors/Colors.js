@@ -36,7 +36,7 @@ const Colors = () => {
           <p>
             Colors are taken from the Figma Local Paint Styles. Colors can be
             grouped in the export step. If you want to group codes, prefix them
-            with the same name.
+            with the same name (only the last two parts will be used).
           </p>
         </div>
         {hasColor ? (
