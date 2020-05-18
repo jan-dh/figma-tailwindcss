@@ -2,7 +2,7 @@
 import getColors from './figma/colors';
 import getTypes from './figma/types';
 
-// Const theme
+// theme
 const theme = {
   colors: [],
   fontSize: [],
@@ -10,6 +10,7 @@ const theme = {
   baseFontSize: false,
   groupColor: false
 };
+
 
 // Gather all different properties
 const colors = getColors();
