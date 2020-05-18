@@ -19,6 +19,7 @@ export default function() {
   }
 
   colorStyles.forEach((style) => {
+    /* Only work with solid colors */
     if (style.paints[0].color){
       const { name } = style;
       const r = Math.round(255 * style.paints[0].color.r);
