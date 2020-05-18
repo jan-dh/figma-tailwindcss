@@ -5,21 +5,22 @@ import getTypes from './figma/types';
 // theme
 const theme = {
   colors: [],
+  gradientColors:[],
   fontSize: [],
   fontFamily: [],
   baseFontSize: false,
   groupColor: false
 };
 
-
 // Gather all different properties
-const colors = getColors();
-const fonts = getTypes();
+const {colors, gradientColors} = getColors();
+const {finalSizes, finalFamilies} = getTypes();
 
 // Create theme
 theme.colors.push(...colors);
-theme.fontSize.push(...fonts[0]);
-theme.fontFamily.push(...fonts[1]);
+theme.gradientColors.push(...gradientColors);
+theme.fontSize.push(...finalSizes);
+theme.fontFamily.push(...finalFamilies);
 
 // options
 const options = {
