@@ -35,6 +35,9 @@ export default function() {
     finalFamilies.push(result);
   });
 
+  // Make sure to sort fontsizes
+  finalSizes.sort((a, b) => a.value.localeCompare(b.value));
+
   // Make objects
-  return [finalSizes, finalFamilies];
+  return {finalSizes, finalFamilies};
 }
