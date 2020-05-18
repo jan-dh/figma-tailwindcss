@@ -12,7 +12,7 @@ const PATHS = {
   src: path.join(__dirname, 'src')
 };
 
-require('dotenv').config();
+
 
 const setHotFile = (isHot) => {
   const hotFile = path.resolve(__dirname, 'src/hot');
@@ -82,6 +82,7 @@ export default (env, argv) => {
         }
       ]
     },
+    devtool: argv.mode === 'production' ? false : 'inline-source-map',
     devServer: {
       headers: {
         'Access-Control-Allow-Origin': '*'

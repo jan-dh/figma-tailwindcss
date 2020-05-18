@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "hot": "npm run && concurrently \"node livereload.js\" \"webpack-dev-server --hot --mode development\" --prefix-colors bgYellow.white.bold,bgMagenta.white.bold,bgBlue.white.bold --names LVR,SVG,WPK --success last",
+    "dev": "webpack --mode=development --watch",
     "build": "npm run && webpack --mode production"
   },
   "repository": {
