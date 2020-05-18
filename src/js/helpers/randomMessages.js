@@ -3,7 +3,7 @@ const messages = {
     'Ooow, no colors?  😢',
     'hmmm, I see you have no colors  🧐',
     'Care to add some colors? 🎨',
-    'Add some colors 🌈 to brighten your day 😎'
+    'Add some colors 🌈 to brighten your day'
   ],
   emptyFamilies: [
     'I guess not every project needs a font family 🤷‍♂️',
