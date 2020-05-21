@@ -1,13 +1,16 @@
 import React, { useGlobal } from 'reactn';
 import { Link } from 'react-router-dom';
 import Color from './Color';
+import Gradient from './Gradient';
 import NewColor from './NewColor';
 import messages from '../../helpers/randomMessages';
 
 const Colors = () => {
   const [colors, setColors] = useGlobal('colors');
+  const [gradients] = useGlobal('gradientColors');
   const nextIndex = colors.length + 1;
   const hasColor = Object.keys(colors).length > 0;
+  const hasGradients = Object.keys(gradients).length > 0;
   const feedbackItem =
     messages.emptyColors[
       Math.floor(Math.random() * messages.emptyColors.length)
@@ -54,7 +57,20 @@ const Colors = () => {
             <p>{feedbackItem}</p>
           </div>
         )}
-
+        {hasGradients  ? (
+          <div className="my-8">
+            <div className="richtext"> 
+              <h3 className="t-gamma">Gradients</h3>
+              <p>We found some gradients in the document. Make sure to add the colors if you want to use them in your theme.</p>
+            </div>
+            {gradients.map((color, i) => (
+              <Gradient
+                key={i}
+                hex={color}
+              />
+            ))}
+          </div>
+        ) : null }
         <NewColor key={nextIndex} index={nextIndex} onChange={updateColor} />
         <div className="flex justify-end mt-8">
           <Link to="/typography" className="button button--green">
