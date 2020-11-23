@@ -19,13 +19,13 @@ assignees: jan-dh
 ### Description
 
 
-
 ### Steps to reproduce
-
 1.
 2.
 
 ### Additional info
-
 - Figma version:
 - OS version:
+
+### Extra
+Sharing the design file where you encountered the issue makes it easier to debug
