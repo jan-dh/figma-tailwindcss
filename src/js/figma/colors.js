@@ -27,21 +27,26 @@ export default function() {
   }
 
   colorStyles.forEach((style) => {
-    /* Only work with solid colors */
-    if (style.paints[0].color){
-      const { name } = style;
-      const {r, g, b} = makeRgb(style.paints[0].color);
-      const value = makeHex(r, g, b);
-      const result = { name, value };
-      colors.push(result);  
-    } 
-     /* Add gradients as a suggestion */
-    else if(style.paints[0].gradientStops.length > 0 ){
-      style.paints[0].gradientStops.forEach(stop => {
-        const {r, g, b} = makeRgb(stop.color);
+    // Extra check for empty paint styles
+    const paint = style.paints[0] || null;
+    if(paint){
+      const {color = null, gradientStops = null} = style.paints[0];
+      /* Only work with solid colors */
+      if (color){
+        const { name } = style;
+        const {r, g, b} = makeRgb(color);
         const value = makeHex(r, g, b);
-        gradientColors.push(value);
-      })
+        const result = { name, value };
+        colors.push(result);
+      }
+       /* Add gradients as a suggestion */
+      else if(gradientStops && gradientStops.length > 0 ){
+        gradientStops.forEach(stop => {
+          const {r, g, b} = makeRgb(stop.color);
+          const value = makeHex(r, g, b);
+          gradientColors.push(value);
+        })
+      }
     }
   });
 
