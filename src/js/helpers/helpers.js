@@ -43,9 +43,13 @@ export function groupColors(colors) {
       groupedColors[key] = {};
     }
     const cleanName = getPart(name, 1);
-    const newItem = {};
-    newItem[cleanName] = value;
-    groupedColors[key] = Object.assign(groupedColors[key], { ...newItem });
+    if(cleanName === name){
+      groupedColors[key] = value;
+    } else{
+      const newItem = {};
+      newItem[cleanName] = value;
+      groupedColors[key] = Object.assign(groupedColors[key], { ...newItem });
+    }
   });
   return groupedColors;
 }
