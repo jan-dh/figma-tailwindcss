@@ -3,6 +3,7 @@ import { HashRouter, Route } from 'react-router-dom';
 import { ScrollToTop } from '../helpers/customHooks';
 import Colors from './Colors/Colors';
 import Type from './Type/Type';
+import Effects from './Effects/Effects';
 import Export from './Export/Export';
 import Info from './Export/Info';
 import Footer from './Footer/Footer';
@@ -15,6 +16,7 @@ const App = () => {
         <div className="container flex-grow">
           <Route exact path="/" render={() => <Colors />}></Route>
           <Route exact path="/typography" render={() => <Type />}></Route>
+          <Route exact path="/effects" render={() => <Effects />}></Route>
           <Route exact path="/export" render={() => <Export />}></Route>
           <Route exact path="/info" render={() => <Info />}></Route>
         </div>

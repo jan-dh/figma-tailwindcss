@@ -74,7 +74,7 @@ const Export = () => {
         </button>
       </div>
       <div className="col flex justify-between mt-8">
-        <Link to="/typography" className="button button--green">
+        <Link to="/effects" className="button button--green">
           Previous
         </Link>
         <Link to="/info" className="button button--green">

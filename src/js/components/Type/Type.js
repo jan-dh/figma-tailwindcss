@@ -60,7 +60,7 @@ const Type = () => {
         <Link to="/" className="button button--green">
           Previous
         </Link>
-        <Link to="/export" className={buttonClass} onClick={validateFontSize}>
+        <Link to="/effects" className={buttonClass} onClick={validateFontSize}>
           Next
         </Link>
       </div>

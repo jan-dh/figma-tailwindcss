@@ -57,7 +57,7 @@ export function groupColors(colors) {
 export function cleanupTheme(theme) {
   const cleanTheme = {};
   // Specify what keys to output in theme
-  const allowedKeys = ['colors','fontFamily','fontSize'];
+  const allowedKeys = ['colors','fontFamily','fontSize','boxShadow'];
   const [grouped] = useGlobal('groupColor');
   Object.entries(theme).forEach(([key, values]) => {
     // Check to remove simple global state items
@@ -88,4 +88,28 @@ export function cleanupTheme(theme) {
     }
   });
   return cleanTheme;
+}
+
+export function rgbToHex(int) {
+  let hex = Number(int).toString(16);
+  if (hex.length < 2) {
+    hex = `0${hex}`;
+  }
+  return hex;
+}
+
+export function makeHex(r, g, b) {
+  const red = rgbToHex(r);
+  const green = rgbToHex(g);
+  const blue = rgbToHex(b);
+  return `#${red}${green}${blue}`;
+}
+
+export function makeRgb(color) {
+  const r = Math.round(255 * color.r);
+  const g = Math.round(255 * color.g);
+  const b = Math.round(255 * color.b);
+  // TODO * 100 and round
+  const a = Math.round(100 * color.a) / 100;
+  return {r, g, b, a}
 }
