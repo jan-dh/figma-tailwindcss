@@ -61,7 +61,7 @@ export function cleanupTheme(theme) {
   const [grouped] = useGlobal('groupColor');
   Object.entries(theme).forEach(([key, values]) => {
     // Check to remove simple global state items
-    if (Array.isArray(values) && allowedKeys.includes(key)) {
+    if (Array.isArray(values) && allowedKeys.includes(key) && Object.keys(values).length > 0) {
       // Theme item
       const themeItem = {};
       // Make a key/value pair
