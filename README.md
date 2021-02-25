@@ -19,6 +19,7 @@ The plugin gets it's info from the Local Paint Styles and Local Text Styles. At 
 -   colors
 -   font-families
 -   text-sizes
+-   boxShadow
 
 #### Colors
 
@@ -47,6 +48,9 @@ All the different font-sizes you use in the Local Text Styles will be picked up 
 ```
 
 The font-sizes the plugin spits out will also be converted into a rem based scale (with 16 as your base).
+
+#### Shadows
+Taken from the effectStyles from your document
 
 ### Importing your theme
 
