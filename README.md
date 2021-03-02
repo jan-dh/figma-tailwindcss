@@ -56,12 +56,14 @@ Taken from the effectStyles from your document.
 
 Import the `theme.js` file in to your `tailwind.config.js` configuration file to use it:
 
-*Require syntax
+**Require syntax**
+
 `const myTheme = require(./theme);`
 
-the require syntax will make sure your custom values get picked up by the (Intelligent Tailwind CSS plugin)[https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss]. If you want to use this syntax, remove the `export default theme` statement from your theme file
+the require syntax will make sure your custom values get picked up by the [Intelligent Tailwind CSS plugin](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss). If you want to use this syntax, remove the `export default theme` statement from your theme file
 
-*Import syntax
+**Import syntax**
+
 `import 'myTheme' from './theme`
 
 #### Extending the default theme
