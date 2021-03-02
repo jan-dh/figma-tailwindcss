@@ -14,12 +14,12 @@ A plugin that tries to bridge the gap between design and code. Figma Tailwindcss
 
 ### Creating your theme
 
-The plugin gets it's info from the Local Paint Styles and Local Text Styles. At this point it picks up:
+The plugin gets it's info from the Local Styles. At this point it picks up:
 
 -   colors
 -   font-families
 -   text-sizes
--   boxShadow
+-   box-Shadow
 
 #### Colors
 
@@ -27,11 +27,11 @@ Colors are taken from the Figma Local Paint Styles. Colors can be grouped in the
 
 #### Font-families
 
-The plugin will pick up all font-families used in your Local Text Styles.
+The plugin will pick up all font-families used in the Local Text Styles.
 
 #### Text-sizes
 
-All the different font-sizes you use in the Local Text Styles will be picked up by the plugin. You can pick a base font-size and the rest of the font-size names are calculated accordingly. The logic used:
+All the different font-sizes used in the Local Text Styles will be picked up by the plugin. Pick a base font-size and the rest of the font-size names are calculated accordingly. The logic used:
 
 ```javascript
 ...
@@ -47,48 +47,50 @@ All the different font-sizes you use in the Local Text Styles will be picked up 
 ...
 ```
 
-The font-sizes the plugin spits out will also be converted into a rem based scale (with 16 as your base).
+The font-sizes the plugin spits out will also be converted into a rem based scale.
 
-#### Shadows
-Taken from the effectStyles from your document
+#### Box-shadows
+Taken from the effectStyles from your document.
 
 ### Importing your theme
 
 Import the `theme.js` file in to your `tailwind.config.js` configuration file to use it:
 
-`import theme from './theme';`
+*Require syntax
+`const myTheme = require(./theme);`
 
-#### Overriding the default theme
+the require syntax will make sure your custom values get picked up by the (Intelligent Tailwind CSS plugin)[https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss]. If you want to use this syntax, remove the `export default theme` statement from your theme file
 
-To override an option in the default theme, create a theme section in your config and add the key you would like to override.
-
-```
-module.exports = {
-    theme: {
-        colors: {
-            theme.colors
-    }
-```
+*Import syntax
+`import 'myTheme' from './theme`
 
 #### Extending the default theme
 
-Using the spread operator at the end of each property you can add your theme values to an existing config or to the default tailwind config.
+You can extend the default theme like so:
 
 ```
 module.exports = {
     theme: {
-        colors: {
-            ...theme.colors
+        extend: {
+            colors: myTheme.colors
+        }
     }
 ```
+
+More info on extending the default theme:
+- https://tailwindcss.com/docs/theme#extending-the-default-theme
+- https://www.youtube.com/watch?v=0l0Gx8gWPHk&ab_channel=TailwindLabs
 
 ## Contributing
 
 All feedback is welcome. Feel free to submit [issues or suggestions](https://github.com/jan-dh/figma-tailwindcss/issues).
 
+The plugin shows you some random messages when you're missing one of the exportable properties. If you want to add your own, feel free to make a Pull Request for [this file](https://github.com/jan-dh/figma-tailwindcss/blob/master/src/js/helpers/randomMessages.js).
+
 ## Roadmap
 
--   🚀 Add more possible exports
+-  line-height
+-  border-radius
 
 ## License
 

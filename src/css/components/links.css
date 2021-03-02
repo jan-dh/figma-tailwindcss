@@ -21,6 +21,13 @@
     }
 }
 
+.button--blue{
+    @apply bg-blue-400 text-white;
+    &:hover{
+        @apply bg-blue-500;
+    }
+}
+
 .button--green {
     @apply bg-teal-500 text-white;
     &:hover {

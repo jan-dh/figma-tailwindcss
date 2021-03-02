@@ -24,7 +24,7 @@ const Export = () => {
   };
 
   const markup = `${JSON.stringify(cleanTheme, null, ' ')}`.trim();
-  // const buttonText = grouped ? 'Ungroup colors' : 'Group colors';
+  const buttonText = grouped ? 'Ungroup colors' : 'Group colors';
   const switchClass = grouped ? 'bg-green-400 active' : 'bg-gray-400';
 
   return (
@@ -58,11 +58,11 @@ const Export = () => {
           >
             <div className="w-1/2 h-full rounded-full shadow bg-white"></div>
           </div>
-          <span className="text-gray-200 text-sm">Group colors</span>
+          <span className="text-gray-200 text-sm">{buttonText}</span>
         </div>
       </div>
-      <div className="col mt-4">
-        <button className="button button--grey mt-4 mr-4" onClick={exportTheme}>
+      <div className="col mt-8 flex items-center">
+        <button className="button button--grey mr-4" onClick={exportTheme}>
           <svg
             className="fill-current w-4 h-4 mr-2"
             xmlns="http://www.w3.org/2000/svg"
@@ -72,14 +72,16 @@ const Export = () => {
           </svg>
           Create file
         </button>
+        <a
+          className="button button--blue"
+          href="https://github.com/jan-dh/figma-tailwindcss/blob/master/README.md"
+          target="_blank" rel="noreferrer">How does it work?</a>
       </div>
       <div className="col flex justify-between mt-8">
         <Link to="/effects" className="button button--green">
           Previous
         </Link>
-        <Link to="/info" className="button button--green">
-          Next
-        </Link>
+        { /* <Link to="/info" className="button button--green">Next</Link> */}
       </div>
     </div>
   );
