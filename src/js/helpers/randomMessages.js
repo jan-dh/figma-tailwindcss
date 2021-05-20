@@ -19,6 +19,10 @@ const messages = {
     'No shadows? Smoooth 😎',
     'As he faced the sun he cast no shadow 🎵',
     'Who needs shadows anyway hé 🤷‍♂️'
+  ],
+  emptyBorderRadii: [
+    'Pretty square 🟦, right?',
+    'No curves? No problemo 👌',
   ]
 };
 

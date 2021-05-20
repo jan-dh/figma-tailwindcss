@@ -11,6 +11,7 @@ const theme = {
   fontSize: [],
   fontFamily: [],
   boxShadow: [],
+  borderRadius: [],
   baseFontSize: false,
   groupColor: false
 };
@@ -19,9 +20,7 @@ const theme = {
 const {colors, gradientColors} = getPaintStyles();
 const {finalSizes, finalFamilies} = getTextStyles();
 const {shadows} = getEffectStyles();
-const {radius} = getNodeStyles();
-
-console.log(radius);
+const {finalRadii} = getNodeStyles();
 
 // Create theme
 theme.colors.push(...colors);
@@ -29,6 +28,7 @@ theme.gradientColors.push(...gradientColors);
 theme.fontSize.push(...finalSizes);
 theme.fontFamily.push(...finalFamilies);
 theme.boxShadow.push(...shadows);
+theme.borderRadius.push(...finalRadii);
 
 // options
 const options = {
