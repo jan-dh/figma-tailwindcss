@@ -19,7 +19,8 @@ The plugin gets it's info from the Local Styles. At this point it picks up:
 -   colors
 -   font-families
 -   text-sizes
--   box-Shadow
+-   box-shadow
+-   border-radius
 
 #### Colors
 
@@ -51,6 +52,9 @@ The font-sizes the plugin spits out will also be converted into a rem based scal
 
 #### Box-shadows
 Taken from the effectStyles from your document.
+
+#### Border-radius
+Taken from the nodeStyles from your document.
 
 ### Importing your theme
 
@@ -92,7 +96,6 @@ The plugin shows you some random messages when you're missing one of the exporta
 ## Roadmap
 
 -  line-height
--  border-radius
 
 ## License
 
