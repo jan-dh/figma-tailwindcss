@@ -6,6 +6,7 @@ export default function() {
   const finalSizes = [];
   const finalFamilies = [];
 
+
   textStyles.forEach((style) => {
     const { family } = style.fontName;
     const { fontSize } = style;
