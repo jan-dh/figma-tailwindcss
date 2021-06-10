@@ -16,7 +16,7 @@ export default function() {
   });
 
   // Get unique values
-  const singleSizes = Array.from(new Set(fontSizes));
+  const singleSizes = Array.from(new Set(fontSizes)).sort((a,b) => a - b);
   const singleFamilies = Array.from(new Set(fontFamilies));
 
   // Clean sizes
@@ -35,9 +35,6 @@ export default function() {
     const result = { name, value };
     finalFamilies.push(result);
   });
-
-  // Make sure to sort fontsizes
-  finalSizes.sort((a, b) => a.value.localeCompare(b.value));
 
   // Make objects
   return {finalSizes, finalFamilies};
