@@ -44,7 +44,7 @@
     "autoprefixer": "^9.8.6",
     "babel-eslint": "^8.2.6",
     "babel-loader": "^8.2.2",
-    "chokidar-cli": "^1.2.1",
+    "chokidar-cli": "^3.0.0",
     "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^3.6.1",
     "css-loader": "^1.0.0",
@@ -69,7 +69,7 @@
     "tailwindcss": "^1.9.6",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
+    "webpack-dev-server": "^4.11.1",
     "webpack-manifest-plugin": "^2.0.3"
   }
 }
