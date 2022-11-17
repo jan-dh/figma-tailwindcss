@@ -2,7 +2,7 @@
 
 A plugin that tries to bridge the gap between design and code. Figma Tailwindcss lets you export aspects of a design made in Figma to a javascript `theme` file that can easily be used with Tailwindcss.
 
-The plugin: [Figma TailwindCSS](https://www.worksmarterevent.nl/on-tour/amersfoort)
+The plugin: [Figma TailwindCSS](https://www.figma.com/community/plugin/785619431629077634/Figma-Tailwindcss)
 
 ---
 
