@@ -24,7 +24,7 @@
     "file-saver": "^2.0.5",
     "html-loader": "^0.5.5",
     "html-webpack-inline-source-plugin": "0.0.10",
-    "livereload": "^0.7.0",
+    "livereload": "^0.9.3",
     "prism-react-renderer": "^1.1.1",
     "prop-types": "^15.7.2",
     "react": "^16.14.0",
