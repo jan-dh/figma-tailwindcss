@@ -7,7 +7,7 @@ import getNodeStyles from './figma/nodeStyles';
 // theme
 const theme = {
   colors: [],
-  gradientColors:[],
+  gradientColors: [],
   fontSize: [],
   fontFamily: [],
   boxShadow: [],
@@ -17,18 +17,10 @@ const theme = {
 };
 
 // Gather all different properties
-const {colors, gradientColors} = getPaintStyles();
-const {finalSizes, finalFamilies} = getTextStyles();
-const {shadows} = getEffectStyles();
-const {finalRadii} = getNodeStyles();
-
-// Create theme
-theme.colors.push(...colors);
-theme.gradientColors.push(...gradientColors);
-theme.fontSize.push(...finalSizes);
-theme.fontFamily.push(...finalFamilies);
-theme.boxShadow.push(...shadows);
-theme.borderRadius.push(...finalRadii);
+const paintStyles = getPaintStyles();
+const textStyles = getTextStyles();
+const effectStyles = getEffectStyles();
+const nodeStyles = getNodeStyles();
 
 // options
 const options = {
@@ -36,7 +28,19 @@ const options = {
   height: 600
 };
 
-// showUi
-figma.showUI(__html__, options);
-// pass theme
-figma.ui.postMessage(theme);
+Promise.all([paintStyles, textStyles, effectStyles, nodeStyles])
+  .then((values) => {
+    theme.colors.push(...values[0].colors);
+    theme.gradientColors.push(...values[0].gradientColors);
+    theme.fontSize.push(...values[1].finalSizes);
+    theme.fontFamily.push(...values[1].finalFamilies);
+    theme.boxShadow.push(...values[2].shadows);
+    theme.borderRadius.push(...values[3].finalRadii);
+    console.log(theme);
+  })
+  .then(() => {
+    // showUi
+    figma.showUI(__html__, options);
+    // pass theme
+    figma.ui.postMessage(theme);
+  });

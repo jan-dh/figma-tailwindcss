@@ -12,8 +12,6 @@ const PATHS = {
   src: path.join(__dirname, 'src')
 };
 
-
-
 const setHotFile = (isHot) => {
   const hotFile = path.resolve(__dirname, 'src/hot');
 
@@ -47,6 +45,9 @@ export default (env, argv) => {
       filename: `[name].js`,
       chunkFilename: `[name].js`,
       publicPath: isHot ? '//localhost:8080/' : '/'
+    },
+    optimization: {
+      minimize: false
     },
     module: {
       rules: [

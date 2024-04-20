@@ -1,11 +1,10 @@
-export default function() {
+export default async function() {
   // eslint-disable-next-line
-  const textStyles = figma.getLocalTextStyles();
+  const textStyles = await figma.getLocalTextStylesAsync();
   const fontSizes = [];
   const fontFamilies = [];
   const finalSizes = [];
   const finalFamilies = [];
-
 
   textStyles.forEach((style) => {
     const { family } = style.fontName;
@@ -16,7 +15,7 @@ export default function() {
   });
 
   // Get unique values
-  const singleSizes = Array.from(new Set(fontSizes)).sort((a,b) => a - b);
+  const singleSizes = Array.from(new Set(fontSizes)).sort((a, b) => a - b);
   const singleFamilies = Array.from(new Set(fontFamilies));
 
   // Clean sizes
@@ -37,5 +36,5 @@ export default function() {
   });
 
   // Make objects
-  return {finalSizes, finalFamilies};
+  return { finalSizes, finalFamilies };
 }

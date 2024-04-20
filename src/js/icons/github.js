@@ -5,7 +5,7 @@ const Github = () => {
     <svg
       className=""
       height="18"
-      length="18"
+      width="18"
       viewBox="0 0 16 16"
       version="1.1"
       aria-hidden="true"
