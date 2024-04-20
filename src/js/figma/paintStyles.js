@@ -6,8 +6,6 @@ export default async function() {
   const colors = []; // array of hex values and their names
   const gradientColors = [];
 
-  console.log(colorStyles);
-
   colorStyles.forEach((style) => {
     // Extra check for empty paint styles
     const paint = style.paints[0] || null;
