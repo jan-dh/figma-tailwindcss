@@ -108,7 +108,7 @@ export default (env, argv) => {
         filename: 'ui.html',
         inlineSource: 'app.(css|js)$'
       }),
-      new HtmlWebpackInlineSourcePlugin()
+      new HtmlWebpackInlineSourcePlugin(HtmlWebpackPlugin)
     ].concat(
       isProduction
         ? [
