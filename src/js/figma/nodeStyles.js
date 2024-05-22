@@ -27,6 +27,5 @@ export default async function() {
 
   // Add default none
   finalRadii.unshift({ name: 'none', value: 0 });
-  console.log(finalRadii);
   return { finalRadii };
 }

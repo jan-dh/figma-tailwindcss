@@ -36,7 +36,6 @@ Promise.all([paintStyles, textStyles, effectStyles, nodeStyles])
     theme.fontFamily.push(...values[1].finalFamilies);
     theme.boxShadow.push(...values[2].shadows);
     theme.borderRadius.push(...values[3].finalRadii);
-    console.log(theme);
   })
   .then(() => {
     // showUi
