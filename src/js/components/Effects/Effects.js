@@ -1,4 +1,4 @@
-import React, {useGlobal} from 'reactn';
+import React, { useGlobal } from 'reactn';
 import { Link } from 'react-router-dom';
 import Shadow from './Shadow';
 import BorderRadius from './BorderRadius';
@@ -10,15 +10,16 @@ const Effects = () => {
   const hasShadows = Object.keys(shadows).length > 0;
   const hasBorderRadii = Object.keys(borderRadii).length > 0;
 
-  const feedbackShadows = messages.emptyShadows[
+  const feedbackShadows =
+    messages.emptyShadows[
       Math.floor(Math.random() * messages.emptyShadows.length)
     ];
-  const feedbackBorderRadii = messages.emptyBorderRadii[
-    Math.floor(Math.random() * messages.emptyBorderRadii.length)
-  ];
+  const feedbackBorderRadii =
+    messages.emptyBorderRadii[
+      Math.floor(Math.random() * messages.emptyBorderRadii.length)
+    ];
 
-
-  return(
+  return (
     <div className="row">
       <div className="col">
         <div className="w-full border-b border-gray-200 py-4">
@@ -29,33 +30,29 @@ const Effects = () => {
       <div className="col">
         <h3 className="t-gamma mt-4">Border-radius</h3>
       </div>
-      { hasBorderRadii
-        ? (
-          Object.keys(borderRadii).map((i) => (
-            <BorderRadius key={i} {...borderRadii[i]} />
-          ))
-        ) :
+      {hasBorderRadii ? (
+        Object.keys(borderRadii).map((i) => (
+          <BorderRadius key={i} {...borderRadii[i]} />
+        ))
+      ) : (
         <div className="col mt-4">
           <div className="richtext">
             <p>{feedbackBorderRadii}</p>
           </div>
         </div>
-      }
+      )}
       <div className="col">
         <h3 className="t-gamma mt-4">Shadows</h3>
       </div>
-      { hasShadows
-        ? (
-          Object.keys(shadows).map((i) => (
-            <Shadow key={i} {...shadows[i]} />
-          ))
-        ) :
+      {hasShadows ? (
+        Object.keys(shadows).map((i) => <Shadow key={i} {...shadows[i]} />)
+      ) : (
         <div className="col mt-4">
           <div className="richtext">
             <p>{feedbackShadows}</p>
           </div>
         </div>
-      }
+      )}
 
       <div className="col flex justify-between mt-8">
         <Link to="/typography" className="button button--green">
@@ -66,7 +63,7 @@ const Effects = () => {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Effects;

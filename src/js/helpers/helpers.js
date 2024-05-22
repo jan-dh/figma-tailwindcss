@@ -43,9 +43,9 @@ export function groupColors(colors) {
       groupedColors[key] = {};
     }
     const cleanName = getPart(name, 1);
-    if(cleanName === name){
+    if (cleanName === name) {
       groupedColors[key] = value;
-    } else{
+    } else {
       const newItem = {};
       newItem[cleanName] = value;
       groupedColors[key] = Object.assign(groupedColors[key], { ...newItem });
@@ -57,11 +57,21 @@ export function groupColors(colors) {
 export function cleanupTheme(theme) {
   const cleanTheme = {};
   // Specify what keys to output in theme
-  const allowedKeys = ['colors','fontFamily','fontSize','boxShadow', 'borderRadius'];
+  const allowedKeys = [
+    'colors',
+    'fontFamily',
+    'fontSize',
+    'boxShadow',
+    'borderRadius'
+  ];
   const [grouped] = useGlobal('groupColor');
   Object.entries(theme).forEach(([key, values]) => {
     // Check to remove simple global state items
-    if (Array.isArray(values) && allowedKeys.includes(key) && Object.keys(values).length > 0) {
+    if (
+      Array.isArray(values) &&
+      allowedKeys.includes(key) &&
+      Object.keys(values).length > 0
+    ) {
       // Theme item
       const themeItem = {};
       // Make a key/value pair
@@ -111,5 +121,5 @@ export function makeRgb(color) {
   const b = Math.round(255 * color.b);
   // TODO * 100 and round
   const a = Math.round(100 * color.a) / 100;
-  return {r, g, b, a}
+  return { r, g, b, a };
 }

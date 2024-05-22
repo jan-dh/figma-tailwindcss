@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const FontSize = (props) => {
-  // const [baseFontSize, setBaseFontSize] = useState(false);
   const { name, value } = props;
   const remSize = value / 16;
   const fontSize = {

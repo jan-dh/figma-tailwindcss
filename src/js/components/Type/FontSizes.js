@@ -6,6 +6,17 @@ import { calculatePosition } from '../../helpers/helpers';
 const FontSizes = () => {
   const [fontSizes, setFontSizes] = useGlobal('fontSize');
   const [baseFontSize, setBaseFontSize] = useGlobal('baseFontSize');
+  const [borderRadii, setBorderRadii] = useGlobal('borderRadius');
+
+  const updateBorderRadii = (base) => {
+    const newRadii = [];
+    borderRadii.forEach((radius, i) => {
+      const name = `rounded-${i}`;
+      const value = `${radius.value / base}rem`;
+      newRadii.push({ name, value });
+    });
+    setBorderRadii(newRadii);
+  };
 
   const updateFontSizes = (e) => {
     // Find index of selected value
@@ -16,7 +27,8 @@ const FontSizes = () => {
     newFontSizes.forEach((item, i) => {
       item.name = calculatePosition(i, basePosition, size);
     });
-    setBaseFontSize(e.target.value);
+    setBaseFontSize(Number(e.target.value));
+    updateBorderRadii(Number(e.target.value));
     setFontSizes(newFontSizes);
   };
 
