@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import { ScrollToTop } from '../helpers/customHooks';
+import Preferences from './Preferences/Preferences';
 import Colors from './Colors/Colors';
 import Type from './Type/Type';
 import Effects from './Effects/Effects';
@@ -13,8 +14,9 @@ const App = () => {
     <div className="min-h-full flex flex-col">
       <HashRouter>
         <ScrollToTop />
-        <div className="container flex-grow">
-          <Route exact path="/" render={() => <Colors />}></Route>
+        <div className="mx-auto flex-grow">
+          <Route exact path="/" render={() => <Preferences />}></Route>
+          <Route exact path="/color" render={() => <Colors />}></Route>
           <Route exact path="/typography" render={() => <Type />}></Route>
           <Route exact path="/effects" render={() => <Effects />}></Route>
           <Route exact path="/export" render={() => <Export />}></Route>
