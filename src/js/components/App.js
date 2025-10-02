@@ -14,9 +14,9 @@ const App = () => {
     <div className="min-h-full flex flex-col">
       <HashRouter>
         <ScrollToTop />
-        <div className="mx-auto flex-grow">
+        <div className="p-4 flex-grow">
           <Route exact path="/" render={() => <Preferences />}></Route>
-          <Route exact path="/color" render={() => <Colors />}></Route>
+          <Route exact path="/colors" render={() => <Colors />}></Route>
           <Route exact path="/typography" render={() => <Type />}></Route>
           <Route exact path="/effects" render={() => <Effects />}></Route>
           <Route exact path="/export" render={() => <Export />}></Route>

@@ -9,8 +9,8 @@ import App from './components/App';
 // ReactDom.render(<App />, document.getElementById('app'));
 
 onmessage = (event) => {
-    const theme = event.data.pluginMessage;
-    setGlobal(theme);
-    ReactDom.render(<App />, document.getElementById('app'));
-    onmessage = null;
+  const theme = event.data.pluginMessage;
+  setGlobal(theme);
+  ReactDom.render(<App />, document.getElementById('app'));
+  onmessage = null;
 };

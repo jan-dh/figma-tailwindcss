@@ -4,8 +4,8 @@ import Github from '../../icons/github';
 
 const Footer = () => {
   return (
-    <div className="w-full bg-gray-300 py-4 mt-12">
-      <div className="container flex text-xs text-tailwind font-medium">
+    <div className="w-full bg-gray-50 py-4">
+      <div className="px-4 flex text-xs text-tailwind font-medium">
         <div className="w-1/2">
           <a
             href="https://tailwindcss.com/"

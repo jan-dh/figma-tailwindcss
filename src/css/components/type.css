@@ -1,15 +1,17 @@
-.t-alpha {
+@layer base {
+  .t-alpha {
     @apply text-5xl;
-}
+  }
 
-.t-beta {
+  .t-beta {
     @apply text-2xl font-bold;
-}
+  }
 
-.t-gamma {
+  .t-gamma {
     @apply text-xl text-gray-900 font-medium leading-tight;
-}
+  }
 
-.intro {
+  .intro {
     @apply text-gray-600;
+  }
 }
