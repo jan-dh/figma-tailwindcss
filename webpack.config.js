@@ -33,7 +33,9 @@ export default (env, argv) => {
     },
     output: {
       filename: '[name].js',
+      chunkFilename: `[name].js`,
       path: path.resolve('dist'),
+      publicPath: isHot ? '//localhost:8080/' : '/',
       clean: true,
     },
     module: {
