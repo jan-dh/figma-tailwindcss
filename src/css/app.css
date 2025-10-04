@@ -33,7 +33,7 @@
 }
 
 .code-block {
-  @apply bg-code-black rounded-lg p-4 text-sm;
+  @apply bg-black rounded-lg p-4 text-sm;
 }
 
 .switch > div {
