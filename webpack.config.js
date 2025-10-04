@@ -72,10 +72,20 @@ export default (env, argv) => {
         filename: 'ui.html',
         inlineSource: 'app.(css|js)$',
       }),
-      new HtmlInlineScriptPlugin({
-        template: './src/ui.html',
-        filename: 'dist/ui.html',
+      new CopyPlugin({
+        patterns: [
+          { from: './src/manifest.json', to: 'manifest.json' },
+          { from: './src/js/code.js', to: 'code.js' }, // code.js extern
+          { from: './src/css/app.css', to: 'app.css' }, // extern css
+        ],
       }),
+      // new HtmlInlineScriptPlugin({
+      //   template: './src/ui.html',
+      //   filename: 'dist/ui.html',
+      // }),
     ],
+    resolve: {
+      extensions: ['.js'],
+    },
   };
 };
