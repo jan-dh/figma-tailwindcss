@@ -5,6 +5,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import tailwindcss from 'tailwindcss';
 import autoprefixer from 'autoprefixer';
 import ESLintPlugin from 'eslint-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import HtmlInlineScriptPlugin from 'html-inline-script-webpack-plugin';
 
@@ -46,19 +47,12 @@ export default (env, argv) => {
           use: ['babel-loader'],
         },
         {
+          test: /\.(png|jpe?g|gif|svg)$/i,
+          type: 'asset/resource',
+        },
+        {
           test: /\.css$/,
-          use: [
-            'style-loader',
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                postcssOptions: {
-                  plugins: [tailwindcss, autoprefixer],
-                },
-              },
-            },
-          ],
+          use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
         },
       ],
     },
