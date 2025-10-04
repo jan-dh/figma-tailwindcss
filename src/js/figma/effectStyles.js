@@ -1,6 +1,6 @@
-import { makeRgb } from '../helpers/helpers';
+import { makeRgb } from '../helpers/helpers.js';
 
-export default async function() {
+export default async function () {
   // eslint-disable-next-line
   const effectStyles = await figma.getLocalEffectStylesAsync();
   const shadows = [];
@@ -18,7 +18,7 @@ export default async function() {
         styleString.push(
           `${type === 'INNER_SHADOW' ? 'inset ' : ''}${offset.x}px ${
             offset.y
-          }px ${radius}px ${spread}px rgba(${colorString})`
+          }px ${radius}px ${spread}px rgba(${colorString})`,
         );
       }
     });

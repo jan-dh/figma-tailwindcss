@@ -1,9 +1,9 @@
-import React, { useGlobal } from 'reactn';
+import React, { useGlobal, Fragment } from 'reactn';
 import { Link } from 'react-router-dom';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import util from 'util';
 import { saveAs } from 'file-saver';
-import { cleanupTheme } from '../../helpers/helpers';
+import { cleanupTheme } from '../../helpers/helpers.js';
 
 const Export = () => {
   const [theme] = useGlobal();
@@ -17,7 +17,7 @@ const Export = () => {
 
   const exportTheme = () => {
     const fileContent = `const theme = ${util.inspect(cleanTheme, {
-      depth: null
+      depth: null,
     })}; export default theme;`;
     const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
     saveAs(blob, 'theme.js');
@@ -28,14 +28,14 @@ const Export = () => {
   const switchClass = grouped ? 'bg-green-400 active' : 'bg-gray-400';
 
   return (
-    <div className="row">
-      <div className="col flex">
+    <Fragment>
+      <div className="flex">
         <div className="w-full border-b border-gray-200 py-4">
           <h2 className="t-beta">Export theme</h2>
           <p className="intro">Almost there...</p>
         </div>
       </div>
-      <div className="col mt-8 relative">
+      <div className="mt-8 relative">
         <Highlight {...defaultProps} code={markup} language="javascript">
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
             <pre className={className} style={style}>
@@ -61,7 +61,7 @@ const Export = () => {
           <span className="text-gray-200 text-sm">{buttonText}</span>
         </div>
       </div>
-      <div className="col mt-8 flex items-center">
+      <div className="mt-8 flex items-center">
         <button className="button button--grey mr-4" onClick={exportTheme}>
           <svg
             className="fill-current w-4 h-4 mr-2"
@@ -75,15 +75,19 @@ const Export = () => {
         <a
           className="button button--blue"
           href="https://github.com/jan-dh/figma-tailwindcss/blob/master/README.md"
-          target="_blank" rel="noreferrer">How does it work?</a>
+          target="_blank"
+          rel="noreferrer"
+        >
+          How does it work?
+        </a>
       </div>
-      <div className="col flex justify-between mt-8">
+      <div className="flex justify-between mt-8">
         <Link to="/effects" className="button button--green">
           Previous
         </Link>
-        { /* <Link to="/info" className="button button--green">Next</Link> */}
+        {/* <Link to="/info" className="button button--green">Next</Link> */}
       </div>
-    </div>
+    </Fragment>
   );
 };
 

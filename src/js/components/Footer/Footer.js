@@ -1,6 +1,6 @@
 import React from 'react';
-import Tailwind from '../../icons/tailwind';
-import Github from '../../icons/github';
+import Tailwind from '../../icons/tailwind.js';
+import Github from '../../icons/github.js';
 
 const Footer = () => {
   return (

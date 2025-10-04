@@ -1,7 +1,7 @@
 import '../css/app.css';
 import React, { setGlobal } from 'reactn';
 import ReactDom from 'react-dom';
-import App from './components/App';
+import App from './components/App.js';
 // import dummy from './helpers/dummy';
 
 // const theme = dummy;

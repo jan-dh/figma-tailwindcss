@@ -1,16 +1,20 @@
 import React from 'react';
-import { useInput } from '../../helpers/customHooks';
+import { useInput } from '../../helpers/customHooks.js';
+import { formatColor, parseColorToHex } from '../../helpers/colorFormatter.js';
 
 function Color(color) {
   const { name: initalName, value: initalValue, index } = color;
   const [name, setName] = useInput(initalName);
   const [value, setValue] = useInput(initalValue);
+  const { colorFormat } = color;
+
+  console.log(colorFormat, formatColor, parseColorToHex);
 
   // Functions
   const updateColor = () => {
     const newColor = {
       name,
-      value
+      value,
     };
     color.onChange(newColor, index);
   };

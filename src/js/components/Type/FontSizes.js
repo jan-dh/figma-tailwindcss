@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import React, { useGlobal } from 'reactn';
-import FontSize from './FontSize';
-import { calculatePosition } from '../../helpers/helpers';
+import FontSize from './FontSize.js';
+import { calculatePosition } from '../../helpers/helpers.js';
 
 const FontSizes = () => {
   const [fontSizes, setFontSizes] = useGlobal('fontSize');

@@ -1,22 +1,69 @@
-import React, { Fragment } from 'reactn';
+import React, { useGlobal, Fragment } from 'reactn';
 import { Link } from 'react-router-dom';
-// import messages from '../../helpers/randomMessages';
 
 const Preferences = () => {
-  // const [colors, setColors] = useGlobal('colors');
-  // const [gradients] = useGlobal('gradientColors');
+  const [preferences, setPreferences] = useGlobal('preferences');
+
+  const updatePreference = (key, value) => {
+    setPreferences({
+      ...preferences,
+      [key]: value
+    });
+  };
 
   return (
     <Fragment>
       <div className="w-full border-b border-gray-200 py-4">
         <h2 className="t-beta">Preferences</h2>
-        <p className="intro">Tailwind version, color preferences, ...</p>
+        <p className="intro">Configure how Tailwind CSS should be generated</p>
       </div>
       <div className="my-8 richtext">
-        <p>Pick the options on how you want to export your config</p>
+        <h3 className="t-gamma">Tailwind version</h3>
+        <p>Choose which version of Tailwind to target.</p>
+        <div className="mt-4 space-x-4">
+          <label>
+            <input
+              type="radio"
+              name="tailwindVersion"
+              value="3"
+              checked={preferences.tailwindVersion === '3'}
+              onChange={(e) =>
+                updatePreference('tailwindVersion', e.target.value)
+              }
+            />{' '}
+            Tailwind 3
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="tailwindVersion"
+              value="4"
+              checked={preferences.tailwindVersion === '4'}
+              onChange={(e) =>
+                updatePreference('tailwindVersion', e.target.value)
+              }
+            />{' '}
+            Tailwind 4
+          </label>
+        </div>
       </div>
-      <div className="flex justify-end mt-8">
-        <Link to="/typography" className="button button--green">
+      <div className="my-8 richtext">
+        <h3 className="t-gamma">Color format</h3>
+        <p>Select how colors should be exported.</p>
+        <select
+          className="mt-2 border rounded p-2 focus-visible:outline-none focus:ring-1 focus:ring-teal-500"
+          value={preferences.colorFormat}
+          onChange={(e) => updatePreference('colorFormat', e.target.value)}
+        >
+          <option value="hex">Hex (#rrggbb)</option>
+          <option value="rgba">RGBA</option>
+          <option value="hsl">HSL</option>
+          <option value="oklch">OKLCH</option>
+          <option value="oklab">OKLAB</option>
+        </select>
+      </div>
+      <div className="flex justify-between mt-8">
+        <Link to="/colors" className="button button--green">
           Next
         </Link>
       </div>

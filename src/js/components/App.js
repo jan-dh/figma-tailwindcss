@@ -1,15 +1,16 @@
 import React from 'react';
 import { HashRouter, Route } from 'react-router-dom';
-import { ScrollToTop } from '../helpers/customHooks';
-import Preferences from './Preferences/Preferences';
-import Colors from './Colors/Colors';
-import Type from './Type/Type';
-import Effects from './Effects/Effects';
-import Export from './Export/Export';
-import Info from './Export/Info';
-import Footer from './Footer/Footer';
+import { ScrollToTop } from '../helpers/customHooks.js';
+import Preferences from './Preferences/Preferences.js';
+import Colors from './Colors/Colors.js';
+import Type from './Type/Type.js';
+import Effects from './Effects/Effects.js';
+import Export from './Export/Export.js';
+import Info from './Export/Info.js';
+import Footer from './Footer/Footer.js';
 
 const App = () => {
+  console.log('app component');
   return (
     <div className="min-h-full flex flex-col">
       <HashRouter>

@@ -1,12 +1,13 @@
-import React, { useGlobal } from 'reactn';
+import React, { useGlobal, Fragment } from 'reactn';
 import { Link } from 'react-router-dom';
-import Color from './Color';
-import Gradient from './Gradient';
-import NewColor from './NewColor';
-import messages from '../../helpers/randomMessages';
+import Color from './Color.js';
+import Gradient from './Gradient.js';
+import NewColor from './NewColor.js';
+import messages from '../../helpers/randomMessages.js';
 
 const Colors = () => {
   const [colors, setColors] = useGlobal('colors');
+  const [preferences] = useGlobal('preferences');
   const [gradients] = useGlobal('gradientColors');
   const nextIndex = colors.length + 1;
   const hasColor = Object.keys(colors).length > 0;
@@ -15,6 +16,8 @@ const Colors = () => {
     messages.emptyColors[
       Math.floor(Math.random() * messages.emptyColors.length)
     ];
+
+  const { colorFormat } = preferences;
 
   const updateColor = (color, i) => {
     const newColors = colors;
@@ -29,56 +32,58 @@ const Colors = () => {
   };
 
   return (
-    <div className="row">
-      <div className="col">
-        <div className="w-full border-b border-gray-200 py-4">
-          <h2 className="t-beta">Colors</h2>
-          <p className="intro">Pick and choose the colors you want to use</p>
-        </div>
-        <div className="my-8 richtext">
-          <p>
-            Colors are taken from the Figma Local Paint Styles. Colors can be
-            grouped in the export step. If you want to group codes, prefix them
-            with the same name (only the last two parts will be used).
-          </p>
-        </div>
-        {hasColor ? (
-          colors.map((color, i) => (
-            <Color
-              key={i}
-              index={i}
-              onChange={updateColor}
-              removeColor={removeColor}
-              {...color}
-            />
-          ))
-        ) : (
-          <div className="richtext">
-            <p>{feedbackItem}</p>
-          </div>
-        )}
-        {hasGradients  ? (
-          <div className="my-8">
-            <div className="richtext"> 
-              <h3 className="t-gamma">Gradients</h3>
-              <p>We found some gradients in the document. Make sure to add the colors if you want to use them in your theme.</p>
-            </div>
-            {gradients.map((color, i) => (
-              <Gradient
-                key={i}
-                hex={color}
-              />
-            ))}
-          </div>
-        ) : null }
-        <NewColor key={nextIndex} index={nextIndex} onChange={updateColor} />
-        <div className="flex justify-end mt-8">
-          <Link to="/typography" className="button button--green">
-            Next
-          </Link>
-        </div>
+    <Fragment>
+      <div className="w-full border-b border-gray-200 py-4">
+        <h2 className="t-beta">Colors</h2>
+        <p className="intro">Pick and choose the colors you want to use</p>
       </div>
-    </div>
+      <div className="my-8 richtext">
+        <p>
+          Colors are taken from the Figma Local Paint Styles. Colors can be
+          grouped in the export step. If you want to group codes, prefix them
+          with the same name (only the last two parts will be used).
+        </p>
+      </div>
+      {hasColor ? (
+        colors.map((color, i) => (
+          <Color
+            key={i}
+            index={i}
+            onChange={updateColor}
+            removeColor={removeColor}
+            colorFormat={colorFormat}
+            {...color}
+          />
+        ))
+      ) : (
+        <div className="richtext">
+          <p>{feedbackItem}</p>
+        </div>
+      )}
+      {hasGradients ? (
+        <div className="my-8">
+          <div className="richtext">
+            <h3 className="t-gamma">Gradients</h3>
+            <p>
+              We found some gradients in the document. Make sure to add the
+              colors if you want to use them in your theme.
+            </p>
+          </div>
+          {gradients.map((color, i) => (
+            <Gradient key={i} hex={color} />
+          ))}
+        </div>
+      ) : null}
+      <NewColor key={nextIndex} index={nextIndex} onChange={updateColor} />
+      <div className="flex justify-between mt-8">
+        <Link to="/" className="button button--green">
+          Previous
+        </Link>
+        <Link to="/typography" className="button button--green">
+          Next
+        </Link>
+      </div>
+    </Fragment>
   );
 };
 

@@ -1,6 +1,6 @@
-import { makeHex, makeRgb } from '../helpers/helpers';
+import { makeHex, makeRgb } from '../helpers/helpers.js';
 
-export default async function() {
+export default async function () {
   // eslint-disable-next-line
   const colorStyles = await figma.getLocalPaintStylesAsync();
   const colors = []; // array of hex values and their names

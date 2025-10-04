@@ -1,8 +1,8 @@
-import React, { useGlobal } from 'reactn';
+import React, { useGlobal, Fragment } from 'reactn';
 import { Link } from 'react-router-dom';
-import Shadow from './Shadow';
-import BorderRadius from './BorderRadius';
-import messages from '../../helpers/randomMessages';
+import Shadow from './Shadow.js';
+import BorderRadius from './BorderRadius.js';
+import messages from '../../helpers/randomMessages.js';
 
 const Effects = () => {
   const [shadows] = useGlobal('boxShadow');
@@ -20,28 +20,24 @@ const Effects = () => {
     ];
 
   return (
-    <div className="row">
-      <div className="col">
-        <div className="w-full border-b border-gray-200 py-4">
-          <h2 className="t-beta">Effects</h2>
-          <p className="intro">Effect Styles we found in your Figma file</p>
-        </div>
+    <Fragment>
+      <div className="w-full border-b border-gray-200 py-4">
+        <h2 className="t-beta">Effects</h2>
+        <p className="intro">Effect Styles we found in your Figma file</p>
       </div>
-      <div className="col">
-        <h3 className="t-gamma mt-4">Border-radius</h3>
-      </div>
+      <h3 className="t-gamma mt-4">Border-radius</h3>
       {hasBorderRadii ? (
         Object.keys(borderRadii).map((i) => (
           <BorderRadius key={i} {...borderRadii[i]} />
         ))
       ) : (
-        <div className="col mt-4">
+        <div className="mt-4">
           <div className="richtext">
             <p>{feedbackBorderRadii}</p>
           </div>
         </div>
       )}
-      <div className="col">
+      <div className="">
         <h3 className="t-gamma mt-4">Shadows</h3>
       </div>
       {hasShadows ? (
@@ -53,8 +49,7 @@ const Effects = () => {
           </div>
         </div>
       )}
-
-      <div className="col flex justify-between mt-8">
+      <div className="flex justify-between mt-8">
         <Link to="/typography" className="button button--green">
           Previous
         </Link>
@@ -62,7 +57,7 @@ const Effects = () => {
           Next
         </Link>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

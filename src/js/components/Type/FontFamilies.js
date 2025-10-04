@@ -1,5 +1,5 @@
 import React, { useGlobal } from 'reactn';
-import Family from './FontFamily';
+import Family from './FontFamily.js';
 
 const FontFamilies = () => {
   const [fontFamilies] = useGlobal('fontFamily');

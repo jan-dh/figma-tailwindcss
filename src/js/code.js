@@ -1,8 +1,9 @@
 /* eslint-disable */
-import getPaintStyles from './figma/paintStyles';
-import getTextStyles from './figma/textStyles';
-import getEffectStyles from './figma/effectStyles';
-import getNodeStyles from './figma/nodeStyles';
+import getPaintStyles from './figma/paintStyles.js';
+import getTextStyles from './figma/textStyles.js';
+import getEffectStyles from './figma/effectStyles.js';
+import getNodeStyles from './figma/nodeStyles.js';
+import preferences from './settings/preferences.js';
 
 // theme
 const theme = {
@@ -13,7 +14,8 @@ const theme = {
   boxShadow: [],
   borderRadius: [],
   baseFontSize: false,
-  groupColor: false
+  groupColor: false,
+  preferences,
 };
 
 // Gather all different properties
@@ -25,7 +27,7 @@ const nodeStyles = getNodeStyles();
 // options
 const options = {
   width: 740,
-  height: 600
+  height: 600,
 };
 
 Promise.all([paintStyles, textStyles, effectStyles, nodeStyles])

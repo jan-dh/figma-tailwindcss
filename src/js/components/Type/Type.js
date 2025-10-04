@@ -1,8 +1,8 @@
-import React, { useGlobal } from 'reactn';
+import React, { useGlobal, Fragment } from 'reactn';
 import { Link } from 'react-router-dom';
-import FontFamilies from './FontFamilies';
-import FontSizes from './FontSizes';
-import messages from '../../helpers/randomMessages';
+import FontFamilies from './FontFamilies.js';
+import FontSizes from './FontSizes.js';
+import messages from '../../helpers/randomMessages.js';
 
 const Type = () => {
   const [fontSizes] = useGlobal('fontSize');
@@ -31,7 +31,7 @@ const Type = () => {
       : 'button button--green opacity-50';
 
   return (
-    <div className="row">
+    <Fragment>
       <div className="col">
         <div className="w-full border-b border-gray-200 py-4">
           <h2 className="t-beta">Typography</h2>
@@ -46,7 +46,7 @@ const Type = () => {
           </div>
         )}
       </div>
-      <div className="col mt-8">
+      <div className="mt-8">
         <h3 className="t-gamma">Font sizes</h3>
         {hasSizes ? (
           <FontSizes />
@@ -56,15 +56,15 @@ const Type = () => {
           </div>
         )}
       </div>
-      <div className="col flex justify-between mt-8">
-        <Link to="/" className="button button--green">
+      <div className="flex justify-between mt-8">
+        <Link to="/colors" className="button button--green">
           Previous
         </Link>
         <Link to="/effects" className={buttonClass} onClick={validateFontSize}>
           Next
         </Link>
       </div>
-    </div>
+    </Fragment>
   );
 };
 export default Type;

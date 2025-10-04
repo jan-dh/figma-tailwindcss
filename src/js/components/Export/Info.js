@@ -1,4 +1,4 @@
-import React from 'reactn';
+import React, { Fragment } from 'reactn';
 import { Link } from 'react-router-dom';
 
 const Info = () => {
@@ -19,8 +19,8 @@ const Info = () => {
     }
   `;
   return (
-    <div className="row">
-      <div className="col flex">
+    <Fragment>
+      <div className="flex">
         <div className="w-full border-b border-gray-200 py-4">
           <h2 className="t-beta">Usage</h2>
           <p className="intro">
@@ -28,7 +28,7 @@ const Info = () => {
           </p>
         </div>
       </div>
-      <div className="col mt-8">
+      <div className="mt-8">
         <div className="richtext">
           <p>
             Import the <code>theme.js</code> file in to your{' '}
@@ -57,12 +57,12 @@ const Info = () => {
           </pre>
         </div>
       </div>
-      <div className="col flex justify-between mt-8">
+      <div className="flex justify-between mt-8">
         <Link to="/export" className="button button--green">
           Previous
         </Link>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

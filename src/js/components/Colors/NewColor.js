@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useInput } from '../../helpers/customHooks';
+import { useInput } from '../../helpers/customHooks.js';
 
 const NewColor = (props) => {
   const { index } = props;
@@ -10,7 +10,7 @@ const NewColor = (props) => {
   const addColor = () => {
     const newColor = {
       name,
-      value
+      value,
     };
     props.onChange(newColor, index);
   };
@@ -50,5 +50,5 @@ export default NewColor;
 
 NewColor.propTypes = {
   index: PropTypes.number,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
