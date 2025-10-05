@@ -25,18 +25,38 @@
   --color-code-white: #fff;
 }
 
+.text-code-white {
+  color: var(--color-code-white);
+}
+.text-code-blue {
+  color: var(--color-code-blue);
+}
+.text-code-red {
+  color: var(--color-code-red);
+}
+.text-code-purple {
+  color: var(--color-code-purple);
+}
+.text-code-yellow {
+  color: var(--color-code-yellow);
+}
+.text-code-green {
+  color: var(--color-code-green);
+}
+
 .color {
   height: 42px;
   width: 42px;
   box-sizing: border-box;
-  @apply p-4 mr-4;
+  @apply rounded p-4 mr-4;
 }
 
 .code-block {
-  @apply bg-black rounded-lg p-4 text-sm;
+  @apply bg-code-black rounded-lg p-4 text-sm;
 }
 
 .switch > div {
+  @apply transition duration-100 ease-out;
   transform: translateX(0%);
 }
 .switch.active > div {
