@@ -10,23 +10,42 @@ import Info from './Export/Info.js';
 import Footer from './Footer/Footer.js';
 
 const App = () => {
-  console.log('app component');
-  return (
-    <div className="min-h-full flex flex-col">
-      <HashRouter>
-        <ScrollToTop />
-        <div className="p-4 flex-grow">
-          <Route exact path="/" render={() => <Preferences />}></Route>
-          <Route exact path="/colors" render={() => <Colors />}></Route>
-          <Route exact path="/typography" render={() => <Type />}></Route>
-          <Route exact path="/effects" render={() => <Effects />}></Route>
-          <Route exact path="/export" render={() => <Export />}></Route>
-          <Route exact path="/info" render={() => <Info />}></Route>
+    return (
+        <div className="min-h-full flex flex-col">
+            <HashRouter>
+                <ScrollToTop />
+                <div className="p-4 flex-grow">
+                    <Route
+                        exact
+                        path="/"
+                        render={() => <Preferences />}
+                    ></Route>
+                    <Route
+                        exact
+                        path="/colors"
+                        render={() => <Colors />}
+                    ></Route>
+                    <Route
+                        exact
+                        path="/typography"
+                        render={() => <Type />}
+                    ></Route>
+                    <Route
+                        exact
+                        path="/effects"
+                        render={() => <Effects />}
+                    ></Route>
+                    <Route
+                        exact
+                        path="/export"
+                        render={() => <Export />}
+                    ></Route>
+                    <Route exact path="/info" render={() => <Info />}></Route>
+                </div>
+            </HashRouter>
+            <Footer />
         </div>
-      </HashRouter>
-      <Footer />
-    </div>
-  );
+    );
 };
 
 export default App;

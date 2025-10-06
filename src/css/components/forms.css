@@ -35,19 +35,6 @@
     height: auto;
 }
 
-/**
- * 1. Update color of arrow in the fill attribute. %23 is an encoded hashtag.
- */
-.form-control--select {
-    padding-right: 2rem;
-    box-sizing: border-box;
-    appearance: none;
-    background-size: 13px 7px;
-    background-position: calc(100% - 0.75rem) 50%;
-    background-repeat: no-repeat;
-    background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26.57 14'%3E%3Cpath fill='%23000000' d='M13.28 14a1.62 1.62 0 0 0 1-.39L26.11 2.52a1.4 1.4 0 0 0 .05-2 1.4 1.4 0 0 0-2 0L13.28 10.57 2.42.39a1.44 1.44 0 0 0-2 2.08l11.82 11.1a1.48 1.48 0 0 0 1.04.43z'/%3E%3C/svg%3E"); /* 1 */
-}
-
 .form-checkbox,
 .form-radio {
     @apply inline-flex items-center;

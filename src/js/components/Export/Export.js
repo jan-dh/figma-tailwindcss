@@ -6,89 +6,112 @@ import { saveAs } from 'file-saver';
 import { cleanupTheme } from '../../helpers/helpers.js';
 
 const Export = () => {
-  const [theme] = useGlobal();
-  const cleanTheme = cleanupTheme(theme);
-  const [grouped, setGrouped] = useGlobal('groupColor');
+    const [theme] = useGlobal();
+    const [preferences] = useGlobal('preferences');
+    const { colorFormat } = preferences;
+    const cleanTheme = cleanupTheme(theme, colorFormat);
+    const [grouped, setGrouped] = useGlobal('groupColor');
 
-  const groupColors = () => {
-    const toggle = !(grouped !== false);
-    setGrouped(toggle);
-  };
+    const groupColors = () => {
+        const toggle = !(grouped !== false);
+        setGrouped(toggle);
+    };
 
-  const exportTheme = () => {
-    const fileContent = `const theme = ${util.inspect(cleanTheme, {
-      depth: null,
-    })}; export default theme;`;
-    const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
-    saveAs(blob, 'theme.js');
-  };
+    const exportTheme = () => {
+        const fileContent = `const theme = ${util.inspect(cleanTheme, {
+            depth: null,
+        })}; export default theme;`;
+        const blob = new Blob([fileContent], {
+            type: 'text/plain;charset=utf-8',
+        });
+        saveAs(blob, 'theme.js');
+    };
 
-  const markup = `${JSON.stringify(cleanTheme, null, ' ')}`.trim();
-  const buttonText = grouped ? 'Ungroup colors' : 'Group colors';
-  const switchClass = grouped ? 'bg-green-400 active' : 'bg-gray-400';
+    const markup = `${JSON.stringify(cleanTheme, null, ' ')}`.trim();
+    const buttonText = grouped ? 'Ungroup colors' : 'Group colors';
+    const switchClass = grouped ? 'bg-green-400 active' : 'bg-gray-400';
 
-  return (
-    <Fragment>
-      <div className="flex">
-        <div className="w-full border-b border-gray-200 py-4">
-          <h2 className="t-beta">Export theme</h2>
-          <p className="intro">Almost there...</p>
-        </div>
-      </div>
-      <div className="mt-8 relative">
-        <Highlight {...defaultProps} code={markup} language="javascript">
-          {({ className, style, tokens, getLineProps, getTokenProps }) => (
-            <pre className={className} style={style}>
-              {tokens.map((line, i) => (
-                <div key={i} {...getLineProps({ line, key: i })}>
-                  {line.map((token, key) => (
-                    <span key={key} {...getTokenProps({ token, key })} />
-                  ))}
+    return (
+        <Fragment>
+            <div className="flex">
+                <div className="w-full border-b border-gray-200 py-4">
+                    <h2 className="t-beta">Export theme</h2>
+                    <p className="intro">Almost there...</p>
                 </div>
-              ))}
-            </pre>
-          )}
-        </Highlight>
-        <div
-          className="absolute top-0 right-0 mr-4 mt-4 flex items-center"
-          onClick={groupColors}
-        >
-          <div
-            className={`switch w-12 h-6 rounded-full cursor-pointer mr-4 ${switchClass}`}
-          >
-            <div className="w-1/2 h-full rounded-full shadow bg-white"></div>
-          </div>
-          <span className="text-gray-200 text-sm">{buttonText}</span>
-        </div>
-      </div>
-      <div className="mt-8 flex items-center">
-        <button className="button button--grey mr-4" onClick={exportTheme}>
-          <svg
-            className="fill-current w-4 h-4 mr-2"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-          >
-            <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
-          </svg>
-          Create file
-        </button>
-        <a
-          className="button button--blue"
-          href="https://github.com/jan-dh/figma-tailwindcss/blob/master/README.md"
-          target="_blank"
-          rel="noreferrer"
-        >
-          How does it work?
-        </a>
-      </div>
-      <div className="flex justify-between mt-8">
-        <Link to="/effects" className="button button--green">
-          Previous
-        </Link>
-        {/* <Link to="/info" className="button button--green">Next</Link> */}
-      </div>
-    </Fragment>
-  );
+            </div>
+            <div className="mt-8 relative">
+                <Highlight
+                    {...defaultProps}
+                    code={markup}
+                    language="javascript"
+                >
+                    {({
+                        className,
+                        style,
+                        tokens,
+                        getLineProps,
+                        getTokenProps,
+                    }) => (
+                        <pre className={className} style={style}>
+                            {tokens.map((line, i) => (
+                                <div
+                                    key={i}
+                                    {...getLineProps({ line, key: i })}
+                                >
+                                    {line.map((token, key) => (
+                                        <span
+                                            key={key}
+                                            {...getTokenProps({ token, key })}
+                                        />
+                                    ))}
+                                </div>
+                            ))}
+                        </pre>
+                    )}
+                </Highlight>
+                <div
+                    className="absolute top-0 right-0 mr-4 mt-4 flex items-center"
+                    onClick={groupColors}
+                >
+                    <div
+                        className={`switch w-12 h-6 rounded-full cursor-pointer mr-4 ${switchClass}`}
+                    >
+                        <div className="w-1/2 h-full rounded-full shadow bg-white"></div>
+                    </div>
+                    <span className="text-gray-200 text-sm">{buttonText}</span>
+                </div>
+            </div>
+            <div className="mt-8 flex items-center">
+                <button
+                    className="button button--grey mr-4"
+                    onClick={exportTheme}
+                >
+                    <svg
+                        className="fill-current w-4 h-4 mr-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                    >
+                        <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+                    </svg>
+                    Create file
+                </button>
+                <a
+                    className="button button--blue"
+                    href="https://github.com/jan-dh/figma-tailwindcss/blob/master/README.md"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    How does it work?
+                </a>
+            </div>
+            <div className="flex justify-between mt-8">
+                <Link to="/effects" className="button button--green">
+                    Previous
+                </Link>
+                {/* <Link to="/info" className="button button--green">Next</Link> */}
+            </div>
+        </Fragment>
+    );
 };
 
 export default Export;
