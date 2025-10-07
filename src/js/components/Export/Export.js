@@ -7,14 +7,15 @@ import { cleanupTheme } from '../../helpers/helpers.js';
 
 const Export = () => {
     const [theme] = useGlobal();
-    const [preferences] = useGlobal('preferences');
-    const { colorFormat } = preferences;
+    const [preferences, setPreferences] = useGlobal('preferences');
+    const { colorFormat, grouped } = preferences;
     const cleanTheme = cleanupTheme(theme, colorFormat);
-    const [grouped, setGrouped] = useGlobal('groupColor');
 
     const groupColors = () => {
-        const toggle = !(grouped !== false);
-        setGrouped(toggle);
+        setPreferences({
+            ...preferences,
+            grouped: !(grouped ?? false),
+        });
     };
 
     const exportTheme = () => {

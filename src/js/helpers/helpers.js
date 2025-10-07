@@ -58,8 +58,9 @@ export function groupColors(colors) {
 }
 
 export function cleanupTheme(theme, colorFormat) {
+    const [preferences] = useGlobal('preferences');
+    const { grouped } = preferences;
     const cleanTheme = {};
-    // Specify what keys to output in theme
     const allowedKeys = [
         'colors',
         'fontFamily',
@@ -67,40 +68,35 @@ export function cleanupTheme(theme, colorFormat) {
         'boxShadow',
         'borderRadius',
     ];
-    const [grouped] = useGlobal('groupColor');
     Object.entries(theme).forEach(([key, values]) => {
         // Check to remove simple global state items
         if (
-            Array.isArray(values) &&
-            allowedKeys.includes(key) &&
-            Object.keys(values).length > 0
-        ) {
-            // Theme item
-            const themeItem = {};
-            // Make a key/value pair
+            !Array.isArray(values) ||
+            !allowedKeys.includes(key) ||
+            Object.keys(values).length === 0
+        )
+            return;
+        if (key === 'colors') {
+            const formattedColors = values.map(({ name, value }) => ({
+                name,
+                value: formatColor(value, colorFormat),
+            }));
+            cleanTheme[key] = grouped
+                ? groupColors(formattedColors)
+                : Object.assign(
+                      {},
+                      ...formattedColors.map((c) => ({ [c.name]: c.value }))
+                  );
+        } else {
             const cleanArray = values.map(({ name, value }) => {
-                const cleanItem = {};
-                // Custom transforms, based on type
                 switch (key) {
                     case 'fontSize':
-                        cleanItem[name] = `${value / 16}rem`;
-                        break;
-                    case 'colors':
-                        cleanItem[name] = formatColor(value, colorFormat);
-                        break;
+                        return { [name]: `${value / 16}rem` };
                     default:
-                        cleanItem[name] = value;
+                        return { [name]: value };
                 }
-                return cleanItem;
             });
-            // Return
-            const cleanValues = Object.assign({}, ...cleanArray);
-            if (key === 'colors' && grouped) {
-                themeItem[key] = groupColors(values);
-            } else {
-                themeItem[key] = cleanValues;
-            }
-            Object.assign(cleanTheme, themeItem);
+            cleanTheme[key] = Object.assign({}, ...cleanArray);
         }
     });
     return cleanTheme;
