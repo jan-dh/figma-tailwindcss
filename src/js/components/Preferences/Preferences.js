@@ -69,6 +69,7 @@ const Preferences = () => {
                     <option value="rgba">RGBA</option>
                     <option value="hsl">HSL</option>
                     <option value="oklch">OKLCH</option>
+                    <option value="oklab">OKLAB</option>
                 </select>
             </div>
             <div className="flex justify-end mt-8">
