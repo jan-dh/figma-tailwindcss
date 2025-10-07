@@ -5,10 +5,10 @@ const BorderRadius = (props) => {
     const { name, value } = props;
     // Return
     return (
-        <div className=" ">
+        <div className="flex flex-col space-y-2">
             <span className="block text-gray-700">{name}</span>
             <div
-                className="w-20 h-20 rounded mt-4 bg-gray-200 border"
+                className="w-20 h-20 rounded bg-gray-200 border"
                 style={{ borderRadius: value }}
             ></div>
         </div>

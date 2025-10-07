@@ -27,9 +27,9 @@ const Effects = () => {
                     Effect Styles we found in your Figma file
                 </p>
             </div>
-            <h3 className="t-gamma mt-4">Border-radius</h3>
+            <h3 className="t-gamma my-4">Border-radius</h3>
             {hasBorderRadii ? (
-                <div className="grid grid-cols-4">
+                <div className="grid grid-cols-4 gap-4">
                     {Object.keys(borderRadii).map((i) => (
                         <BorderRadius key={i} {...borderRadii[i]} />
                     ))}
@@ -41,11 +41,9 @@ const Effects = () => {
                     </div>
                 </div>
             )}
-            <div className="">
-                <h3 className="t-gamma mt-4">Shadows</h3>
-            </div>
+            <h3 className="t-gamma my-4">Shadows</h3>
             {hasShadows ? (
-                <div className="grid grid-cols-4">
+                <div className="grid grid-cols-4 gap-4">
                     {Object.keys(shadows).map((i) => (
                         <Shadow key={i} {...shadows[i]} />
                     ))}

@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import util from 'util';
 import { saveAs } from 'file-saver';
-import { cleanupTheme } from '../../helpers/helpers.js';
+import { cleanupTheme, formatTailwind4Theme } from '../../helpers/helpers.js';
 
 const Export = () => {
     const [theme] = useGlobal();
     const [preferences, setPreferences] = useGlobal('preferences');
     const { colorFormat, grouped, tailwindVersion } = preferences;
 
-    // cleanupTheme genereert cleanTheme met formatting, grouped en kleurformat
+    const isV4 = tailwindVersion >= 4;
     const cleanTheme = cleanupTheme(
         theme,
         colorFormat,
@@ -18,7 +18,8 @@ const Export = () => {
         tailwindVersion
     );
 
-    const toggleGrouped = () => {
+    const groupColors = () => {
+        if (isV4) return;
         setPreferences({
             ...preferences,
             grouped: !(grouped ?? false),
@@ -26,63 +27,33 @@ const Export = () => {
     };
 
     const exportTheme = () => {
-        let fileContent;
-        let fileName;
-
-        if (tailwindVersion === 3) {
-            // JS-export
-            fileContent = `const theme = ${util.inspect(cleanTheme, { depth: null })};\nexport default theme;`;
-            fileName = 'theme.js';
-        } else if (tailwindVersion === 4) {
-            // CSS-export
-            const cssVars = Object.entries(cleanTheme)
-                .flatMap(([key, values]) => {
-                    if (typeof values !== 'object') return [];
-                    return Object.entries(values).flatMap(
-                        ([subKey, subValue]) => {
-                            if (typeof subValue === 'object') {
-                                return Object.entries(subValue).map(
-                                    ([nestedKey, nestedValue]) =>
-                                        `--${subKey}-${nestedKey}: ${nestedValue};`
-                                );
-                            }
-                            return `--${subKey}: ${subValue};`;
-                        }
-                    );
-                })
-                .join('\n');
-            fileContent = `:root {\n${cssVars}\n}`;
-            fileName = 'theme.css';
+        if (isV4) {
+            const cssContent = formatTailwind4Theme(cleanTheme);
+            const blob = new Blob([cssContent], {
+                type: 'text/css;charset=utf-8',
+            });
+            saveAs(blob, 'theme.css');
+        } else {
+            const jsContent = `const theme = ${util.inspect(cleanTheme, {
+                depth: null,
+                compact: false,
+                breakLength: 80,
+            })};\n\nexport default theme;`;
+            const blob = new Blob([jsContent], {
+                type: 'application/javascript;charset=utf-8',
+            });
+            saveAs(blob, 'theme.js');
         }
-
-        const blob = new Blob([fileContent], {
-            type: 'text/plain;charset=utf-8',
-        });
-        saveAs(blob, fileName);
     };
 
-    // preview markup dynamisch afhankelijk van Tailwind versie
-    const markup =
-        tailwindVersion === 3
-            ? `${JSON.stringify(cleanTheme, null, ' ')}`.trim()
-            : `:root {\n${Object.entries(cleanTheme)
-                  .flatMap(([key, values]) => {
-                      if (typeof values !== 'object') return [];
-                      return Object.entries(values).flatMap(
-                          ([subKey, subValue]) => {
-                              if (typeof subValue === 'object') {
-                                  return Object.entries(subValue).map(
-                                      ([nestedKey, nestedValue]) =>
-                                          `--${subKey}-${nestedKey}: ${nestedValue};`
-                                  );
-                              }
-                              return `--${subKey}: ${subValue};`;
-                          }
-                      );
-                  })
-                  .join('\n')}\n}`;
+    const markup = isV4
+        ? formatTailwind4Theme(cleanTheme)
+        : `const theme = ${util.inspect(cleanTheme, {
+              depth: null,
+              compact: false,
+              breakLength: 80,
+          })}`;
 
-    const language = tailwindVersion === 3 ? 'javascript' : 'css';
     const buttonText = grouped ? 'Ungroup colors' : 'Group colors';
     const switchClass = grouped ? 'bg-green-400 active' : 'bg-gray-400';
 
@@ -96,7 +67,11 @@ const Export = () => {
             </div>
 
             <div className="mt-8 relative">
-                <Highlight {...defaultProps} code={markup} language={language}>
+                <Highlight
+                    {...defaultProps}
+                    code={markup}
+                    language={isV4 ? 'css' : 'javascript'}
+                >
                     {({
                         className,
                         style,
@@ -122,17 +97,21 @@ const Export = () => {
                     )}
                 </Highlight>
 
-                <div
-                    className="absolute top-0 right-0 mr-4 mt-4 flex items-center"
-                    onClick={toggleGrouped}
-                >
+                {!isV4 && (
                     <div
-                        className={`switch w-12 h-6 rounded-full cursor-pointer mr-4 ${switchClass}`}
+                        className="absolute top-0 right-0 mr-4 mt-4 flex items-center"
+                        onClick={groupColors}
                     >
-                        <div className="w-1/2 h-full rounded-full shadow bg-white"></div>
+                        <div
+                            className={`switch w-12 h-6 rounded-full cursor-pointer mr-4 ${switchClass}`}
+                        >
+                            <div className="w-1/2 h-full rounded-full shadow bg-white"></div>
+                        </div>
+                        <span className="text-gray-200 text-sm">
+                            {buttonText}
+                        </span>
                     </div>
-                    <span className="text-gray-200 text-sm">{buttonText}</span>
-                </div>
+                )}
             </div>
 
             <div className="mt-8 flex items-center">
@@ -163,7 +142,6 @@ const Export = () => {
                 <Link to="/effects" className="button button--green">
                     Previous
                 </Link>
-                {/* <Link to="/info" className="button button--green">Next</Link> */}
             </div>
         </Fragment>
     );

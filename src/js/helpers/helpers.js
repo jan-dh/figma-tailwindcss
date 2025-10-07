@@ -1,4 +1,3 @@
-import { useGlobal } from 'reactn';
 import { formatColor } from './colorFormatter.js';
 
 export function calculatePosition(index, basePosition, length) {
@@ -57,7 +56,7 @@ export function groupColors(colors) {
     return groupedColors;
 }
 
-export function cleanupTheme(theme, colorFormat, grouped, tailwindVersion) {
+export function cleanupTheme(theme, colorFormat, grouped) {
     const cleanTheme = {};
     const allowedKeys = [
         'colors',
@@ -67,7 +66,6 @@ export function cleanupTheme(theme, colorFormat, grouped, tailwindVersion) {
         'borderRadius',
     ];
 
-    console.log(`tailwind version ${tailwindVersion}`);
     Object.entries(theme).forEach(([key, values]) => {
         // Check to remove simple global state items
         if (
@@ -124,4 +122,66 @@ export function makeRgb(color) {
     // TODO * 100 and round
     const a = Math.round(100 * color.a) / 100;
     return { r, g, b, a };
+}
+
+export function formatTailwind4Theme(cleanTheme) {
+    const prefixMap = {
+        colors: 'color',
+        fontFamily: 'font',
+        fontSize: 'text',
+        fontWeight: 'font-weight',
+        letterSpacing: 'tracking',
+        lineHeight: 'leading',
+        borderRadius: 'radius',
+        boxShadow: 'shadow',
+    };
+
+    const lines = [];
+
+    const flattenColors = (obj) => {
+        for (const [colorName, value] of Object.entries(obj)) {
+            if (typeof value === 'string') {
+                lines.push(`  --color-${colorName}: ${value};`);
+            } else if (typeof value === 'object' && value !== null) {
+                for (const [variant, val] of Object.entries(value)) {
+                    const safeVariant = variant.replace('/', '-');
+                    lines.push(
+                        `  --color-${colorName}-${safeVariant}: ${val};`
+                    );
+                }
+            }
+        }
+    };
+
+    for (const [section, values] of Object.entries(cleanTheme)) {
+        const ns = prefixMap[section];
+        if (!ns || typeof values !== 'object') continue;
+
+        if (section === 'colors') {
+            flattenColors(values);
+            continue;
+        }
+
+        if (section === 'boxShadow') {
+            for (const [key, val] of Object.entries(values)) {
+                if (!val) continue;
+                const cleanKey = key.replace(/^shadow-/, '');
+                lines.push(`  --shadow-${cleanKey}: ${val};`);
+            }
+            continue;
+        }
+
+        if (section === 'borderRadius') {
+            for (const [key, val] of Object.entries(values)) {
+                lines.push(`  --radius-${key}: ${val};`);
+            }
+            continue;
+        }
+
+        for (const [key, val] of Object.entries(values)) {
+            lines.push(`  --${ns}-${key}: ${val};`);
+        }
+    }
+
+    return `@theme {\n${lines.join('\n')}\n}`;
 }
