@@ -3,7 +3,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import glob from 'glob';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import process from 'process/browser.js'; // ESM import
 import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
 import { PurgeCSSPlugin } from 'purgecss-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -103,11 +102,22 @@ export default (env, argv) => {
             rules: [
                 {
                     test: /\.js$/,
-                    include: [
-                        path.resolve(__dirname, 'src'),
-                        path.resolve(__dirname, 'node_modules/colorjs.io'),
-                    ],
-                    use: ['babel-loader'],
+                    include: path.resolve(__dirname, 'src'),
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                '@babel/preset-env',
+                                '@babel/preset-react',
+                            ],
+                            plugins: [
+                                '@babel/plugin-proposal-class-properties',
+                                '@babel/plugin-proposal-private-methods',
+                                '@babel/plugin-proposal-nullish-coalescing-operator',
+                                '@babel/plugin-proposal-optional-chaining',
+                            ],
+                        },
+                    },
                 },
                 {
                     test: /\.css$/,

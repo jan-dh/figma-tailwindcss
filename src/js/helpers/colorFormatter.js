@@ -1,33 +1,27 @@
-import Color from 'colorjs.io/dist/color.legacy.js';
+import * as culori from 'culori';
 
-export function formatColor(input, format) {
-    try {
-        const c = new Color(input);
-
-        switch (format) {
-            case 'rgba':
-                return c.to('srgb').toString({ format: 'rgb' });
-            case 'hsl':
-                return c.to('hsl').toString();
-            case 'oklch':
-                return c.to('oklch').toString();
-            case 'oklab':
-                return c.to('oklab').toString();
-            case 'hex':
-            default:
-                return c.to('srgb').toString({ format: 'hex' });
-        }
-    } catch {
-        return null; // invalid input
+export function formatColor(c, format) {
+    const col = culori.parse(c);
+    switch (format) {
+        case 'rgba':
+            return culori.formatRgb(col);
+        case 'hsl':
+            return culori.formatHsl(col);
+        case 'oklch':
+            return culori.formatOklch(col);
+        case 'oklab':
+            return culori.formatOklab(col);
+        case 'hex':
+        default:
+            return culori.formatHex(col);
     }
 }
 
 export function parseColorToHex(input) {
     try {
-        return new Color(input)
-            .to('srgb')
-            .toString({ format: 'hex' })
-            .toLowerCase();
+        const col = culori.parse(input);
+        if (!col) return null;
+        return culori.formatHex(col).toLowerCase();
     } catch {
         return null;
     }
