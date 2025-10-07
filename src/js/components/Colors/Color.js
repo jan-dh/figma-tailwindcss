@@ -1,12 +1,10 @@
 import React from 'react';
 import { useInput } from '../../helpers/customHooks.js';
-import { formatColor, parseColorToHex } from '../../helpers/colorFormatter.js';
 
 function Color(color) {
     const { name: initalName, value: initalValue, index } = color;
     const [name, setName] = useInput(initalName);
     const [value, setValue] = useInput(initalValue);
-    const { colorFormat } = color;
     // Functions
     const updateColor = () => {
         const newColor = {
@@ -22,7 +20,7 @@ function Color(color) {
     return (
         <div className="flex mt-4 justify-between items-center">
             <div
-                style={{ backgroundColor: formatColor(value, colorFormat) }}
+                style={{ backgroundColor: value }}
                 className={`color shadow`}
             ></div>
             <div className="form-field">
