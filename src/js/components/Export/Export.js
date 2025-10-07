@@ -8,10 +8,17 @@ import { cleanupTheme } from '../../helpers/helpers.js';
 const Export = () => {
     const [theme] = useGlobal();
     const [preferences, setPreferences] = useGlobal('preferences');
-    const { colorFormat, grouped } = preferences;
-    const cleanTheme = cleanupTheme(theme, colorFormat);
+    const { colorFormat, grouped, tailwindVersion } = preferences;
 
-    const groupColors = () => {
+    // cleanupTheme genereert cleanTheme met formatting, grouped en kleurformat
+    const cleanTheme = cleanupTheme(
+        theme,
+        colorFormat,
+        grouped,
+        tailwindVersion
+    );
+
+    const toggleGrouped = () => {
         setPreferences({
             ...preferences,
             grouped: !(grouped ?? false),
@@ -19,16 +26,63 @@ const Export = () => {
     };
 
     const exportTheme = () => {
-        const fileContent = `const theme = ${util.inspect(cleanTheme, {
-            depth: null,
-        })}; export default theme;`;
+        let fileContent;
+        let fileName;
+
+        if (tailwindVersion === 3) {
+            // JS-export
+            fileContent = `const theme = ${util.inspect(cleanTheme, { depth: null })};\nexport default theme;`;
+            fileName = 'theme.js';
+        } else if (tailwindVersion === 4) {
+            // CSS-export
+            const cssVars = Object.entries(cleanTheme)
+                .flatMap(([key, values]) => {
+                    if (typeof values !== 'object') return [];
+                    return Object.entries(values).flatMap(
+                        ([subKey, subValue]) => {
+                            if (typeof subValue === 'object') {
+                                return Object.entries(subValue).map(
+                                    ([nestedKey, nestedValue]) =>
+                                        `--${subKey}-${nestedKey}: ${nestedValue};`
+                                );
+                            }
+                            return `--${subKey}: ${subValue};`;
+                        }
+                    );
+                })
+                .join('\n');
+            fileContent = `:root {\n${cssVars}\n}`;
+            fileName = 'theme.css';
+        }
+
         const blob = new Blob([fileContent], {
             type: 'text/plain;charset=utf-8',
         });
-        saveAs(blob, 'theme.js');
+        saveAs(blob, fileName);
     };
 
-    const markup = `${JSON.stringify(cleanTheme, null, ' ')}`.trim();
+    // preview markup dynamisch afhankelijk van Tailwind versie
+    const markup =
+        tailwindVersion === 3
+            ? `${JSON.stringify(cleanTheme, null, ' ')}`.trim()
+            : `:root {\n${Object.entries(cleanTheme)
+                  .flatMap(([key, values]) => {
+                      if (typeof values !== 'object') return [];
+                      return Object.entries(values).flatMap(
+                          ([subKey, subValue]) => {
+                              if (typeof subValue === 'object') {
+                                  return Object.entries(subValue).map(
+                                      ([nestedKey, nestedValue]) =>
+                                          `--${subKey}-${nestedKey}: ${nestedValue};`
+                                  );
+                              }
+                              return `--${subKey}: ${subValue};`;
+                          }
+                      );
+                  })
+                  .join('\n')}\n}`;
+
+    const language = tailwindVersion === 3 ? 'javascript' : 'css';
     const buttonText = grouped ? 'Ungroup colors' : 'Group colors';
     const switchClass = grouped ? 'bg-green-400 active' : 'bg-gray-400';
 
@@ -40,12 +94,9 @@ const Export = () => {
                     <p className="intro">Almost there...</p>
                 </div>
             </div>
+
             <div className="mt-8 relative">
-                <Highlight
-                    {...defaultProps}
-                    code={markup}
-                    language="javascript"
-                >
+                <Highlight {...defaultProps} code={markup} language={language}>
                     {({
                         className,
                         style,
@@ -70,9 +121,10 @@ const Export = () => {
                         </pre>
                     )}
                 </Highlight>
+
                 <div
                     className="absolute top-0 right-0 mr-4 mt-4 flex items-center"
-                    onClick={groupColors}
+                    onClick={toggleGrouped}
                 >
                     <div
                         className={`switch w-12 h-6 rounded-full cursor-pointer mr-4 ${switchClass}`}
@@ -82,6 +134,7 @@ const Export = () => {
                     <span className="text-gray-200 text-sm">{buttonText}</span>
                 </div>
             </div>
+
             <div className="mt-8 flex items-center">
                 <button
                     className="button button--grey mr-4"
@@ -105,6 +158,7 @@ const Export = () => {
                     How does it work?
                 </a>
             </div>
+
             <div className="flex justify-between mt-8">
                 <Link to="/effects" className="button button--green">
                     Previous

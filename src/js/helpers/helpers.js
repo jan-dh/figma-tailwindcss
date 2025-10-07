@@ -57,9 +57,7 @@ export function groupColors(colors) {
     return groupedColors;
 }
 
-export function cleanupTheme(theme, colorFormat) {
-    const [preferences] = useGlobal('preferences');
-    const { grouped } = preferences;
+export function cleanupTheme(theme, colorFormat, grouped, tailwindVersion) {
     const cleanTheme = {};
     const allowedKeys = [
         'colors',
@@ -68,6 +66,8 @@ export function cleanupTheme(theme, colorFormat) {
         'boxShadow',
         'borderRadius',
     ];
+
+    console.log(`tailwind version ${tailwindVersion}`);
     Object.entries(theme).forEach(([key, values]) => {
         // Check to remove simple global state items
         if (
