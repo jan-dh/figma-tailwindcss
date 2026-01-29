@@ -1,11 +1,19 @@
 # build artifacts
 dist
-# npm
+
+# dependencies
 node_modules
 .npm
 npm-debug.log
+bun.lockb
 
-# mac
+# editor
 .DS_Store
+.idea
+.vscode
+*.swp
+*.swo
 
-
+# environment
+.env
+.env.local

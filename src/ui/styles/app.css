@@ -1,0 +1,226 @@
+@import "tailwindcss";
+
+@theme {
+  --color-code-black: #2a2734;
+  --color-code-green: #b5f4a5;
+  --color-code-yellow: #ffe484;
+  --color-code-purple: #d9a9ff;
+  --color-code-red: #ff8383;
+  --color-code-blue: #93ddfd;
+  --color-code-white: #fff;
+  --color-tailwind: #2e3748;
+}
+
+/* Base styles */
+html {
+  font-size: 100%;
+}
+
+body {
+  @apply bg-white p-0 m-0 font-sans leading-normal text-slate-900 text-sm;
+}
+
+/* Typography utilities */
+@layer base {
+  .t-alpha {
+    @apply text-3xl;
+  }
+
+  .t-beta {
+    @apply text-base font-semibold text-slate-900;
+  }
+
+  .t-gamma {
+    @apply text-sm text-slate-900 font-medium leading-tight;
+  }
+
+  .intro {
+    @apply text-sm text-slate-500;
+  }
+}
+
+/* Color swatch */
+.color {
+  height: 32px;
+  width: 32px;
+  min-width: 32px;
+  box-sizing: border-box;
+  @apply rounded mr-3 flex-shrink-0;
+}
+
+/* Code block */
+.code-block {
+  @apply bg-code-black rounded-lg p-4 text-sm;
+}
+
+/* Switch toggle */
+.switch > div {
+  @apply transition duration-100 ease-out;
+  transform: translateX(0%);
+}
+.switch.active > div {
+  transform: translateX(100%);
+}
+
+/* Form styles */
+.form-field {
+  @apply flex-1;
+}
+
+.form-label-wrapper {
+  @apply mb-2 flex flex-col items-start;
+}
+
+.form-label {
+  @apply leading-tight;
+}
+
+.form-instructions {
+  @apply text-sm;
+}
+
+.form-control {
+  @apply block w-full py-0 px-2 border border-slate-200 leading-normal rounded bg-white text-slate-900 text-sm shadow-sm;
+  height: 36px;
+}
+
+.form-control:focus {
+  @apply outline-none border-slate-400 ring-1 ring-slate-400;
+}
+
+.form-control--textarea {
+  height: auto;
+}
+
+/* Button styles */
+.button {
+  @apply inline-flex justify-center items-center rounded-md px-3 font-medium leading-tight focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-1 text-sm h-8;
+  transition: 0.15s ease-in;
+}
+
+.button--white {
+  @apply bg-white text-slate-700 font-medium hover:bg-slate-50 border border-slate-200;
+}
+
+.button--grey {
+  @apply bg-transparent text-slate-700 font-medium hover:bg-slate-100 border border-slate-200;
+}
+
+.button--blue {
+  @apply bg-slate-100 text-slate-900 hover:bg-slate-200;
+}
+
+.button--green {
+  @apply bg-slate-900 text-white hover:bg-slate-800;
+}
+
+.button--disabled {
+  @apply bg-slate-200 text-slate-400;
+}
+
+.text-link {
+  @apply text-slate-600 hover:text-slate-900 underline;
+}
+
+/* Rich text styles */
+.richtext {
+  @apply text-slate-600 text-sm;
+}
+
+.richtext h2:first-child,
+.richtext h3:first-child,
+.richtext p:first-child {
+  @apply mt-0;
+}
+
+.richtext p {
+  @apply mt-2;
+}
+
+.richtext h2 {
+  @apply text-base font-semibold mt-3 text-slate-900;
+}
+
+.richtext h3 {
+  @apply text-sm text-slate-900 font-medium leading-tight mt-3;
+}
+
+.richtext ul,
+.richtext ol {
+  @apply mt-2;
+}
+
+.richtext ol {
+  @apply list-decimal list-inside;
+}
+
+.richtext ul > li,
+.richtext ol > li {
+  @apply relative mt-1;
+}
+
+.richtext ul > li {
+  @apply pl-4;
+}
+
+.richtext ul > li:before {
+  content: '';
+  top: 7px;
+  left: 0;
+  border-radius: 50%;
+  width: 4px;
+  height: 4px;
+  @apply absolute bg-slate-400;
+}
+
+.richtext a {
+  @apply text-slate-700 underline;
+}
+
+.richtext a:hover {
+  @apply text-slate-900;
+}
+
+.richtext pre code {
+  @apply p-3 my-3 block overflow-auto text-sm leading-normal bg-slate-100 rounded;
+}
+
+.richtext code {
+  padding: 0.15em 0.35em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px;
+}
+
+/* Prism/Code highlighting - override prism-react-renderer theme */
+pre[class*='language-'] {
+  @apply p-4 rounded-lg text-sm font-mono;
+  background: #1d1f21 !important;
+  overflow: auto;
+  line-height: 1.5;
+}
+
+code[class*='language-'] {
+  @apply font-mono;
+  background: transparent !important;
+}
+
+/* Select styling */
+select {
+  @apply border border-slate-200 rounded px-2 py-1.5 bg-white text-slate-900 text-sm shadow-sm h-8;
+}
+
+select:focus {
+  @apply outline-none ring-1 ring-slate-400 border-slate-400;
+}
+
+/* Radio button styling */
+input[type="radio"] {
+  @apply mr-1;
+}
+
+/* Grid gaps */
+.grid {
+  @apply gap-3;
+}
