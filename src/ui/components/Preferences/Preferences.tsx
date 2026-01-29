@@ -12,14 +12,14 @@ const Preferences = () => {
 
   return (
     <>
-      <div className="w-full border-b border-gray-200 py-4">
+      <div className="w-full border-b border-slate-200 py-3">
         <h2 className="t-beta">Preferences</h2>
         <p className="intro">Configure how Tailwind CSS should be generated</p>
       </div>
-      <div className="my-8 richtext">
+      <div className="my-4 richtext">
         <h3 className="t-gamma">Tailwind version</h3>
         <p>Choose which version of Tailwind to target.</p>
-        <div className="mt-4 space-x-4">
+        <div className="mt-2 space-x-4">
           <label>
             <input
               type="radio"
@@ -46,11 +46,11 @@ const Preferences = () => {
           </label>
         </div>
       </div>
-      <div className="my-8 richtext">
+      <div className="my-4 richtext">
         <h3 className="t-gamma">Color format</h3>
         <p>Select how colors should be exported.</p>
         <select
-          className="mt-2 border rounded p-2 focus-visible:outline-none focus:ring-1 focus:ring-teal-500"
+          className="mt-2"
           value={preferences.colorFormat}
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
             updatePreference('colorFormat', e.target.value)
@@ -62,7 +62,7 @@ const Preferences = () => {
           <option value="oklch">OKLCH</option>
         </select>
       </div>
-      <div className="flex justify-end mt-8">
+      <div className="flex justify-end mt-4">
         <Link to="/colors" className="button button--green">
           Next
         </Link>

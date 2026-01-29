@@ -22,8 +22,8 @@ function Color({ name: initialName, value: initialValue, index, onChange, remove
   }
 
   return (
-    <div className="flex mt-4 justify-between items-center">
-      <div style={{ backgroundColor: value }} className="color shadow"></div>
+    <div className="flex mt-2 justify-between items-center gap-1.5">
+      <div style={{ backgroundColor: value }} className="color shadow-sm"></div>
       <div className="form-field">
         <input
           type="text"
@@ -32,9 +32,10 @@ function Color({ name: initialName, value: initialValue, index, onChange, remove
           defaultValue={name}
           className="form-control"
           onChange={setName}
+          onBlur={updateColor}
         />
       </div>
-      <div className="form-field mx-2">
+      <div className="form-field">
         <input
           type="text"
           name="hex"
@@ -42,16 +43,18 @@ function Color({ name: initialName, value: initialValue, index, onChange, remove
           defaultValue={value}
           className="form-control"
           onChange={setValue}
+          onBlur={updateColor}
         />
       </div>
-      <div>
-        <button className="mx-2 button button--grey" onClick={updateColor}>
-          Update
-        </button>
-        <button className="button button--grey" onClick={handleRemove}>
-          &times;
-        </button>
-      </div>
+      <button
+        className="text-slate-400 hover:text-slate-600 p-1 flex-shrink-0"
+        onClick={handleRemove}
+        title="Remove color"
+      >
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
     </div>
   )
 }

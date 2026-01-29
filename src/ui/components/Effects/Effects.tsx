@@ -20,39 +20,39 @@ const Effects = () => {
 
   return (
     <>
-      <div className="w-full border-b border-gray-200 py-4">
+      <div className="w-full border-b border-slate-200 py-3">
         <h2 className="t-beta">Effects</h2>
         <p className="intro">Effect Styles we found in your Figma file</p>
       </div>
-      <h3 className="t-gamma my-4">Border-radius</h3>
+      <h3 className="t-gamma my-3">Border-radius</h3>
       {hasBorderRadii ? (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="flex flex-wrap gap-4">
           {borderRadii.map((radius, i) => (
             <BorderRadius key={i} {...radius} />
           ))}
         </div>
       ) : (
-        <div className="mt-4">
+        <div className="mt-2">
           <div className="richtext">
             <p>{feedbackBorderRadii}</p>
           </div>
         </div>
       )}
-      <h3 className="t-gamma my-4">Shadows</h3>
+      <h3 className="t-gamma my-3">Shadows</h3>
       {hasShadows ? (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="flex flex-wrap gap-4">
           {shadows.map((shadow, i) => (
             <Shadow key={i} {...shadow} />
           ))}
         </div>
       ) : (
-        <div className="mt-4">
+        <div className="mt-2">
           <div className="richtext">
             <p>{feedbackShadows}</p>
           </div>
         </div>
       )}
-      <div className="flex justify-between mt-8">
+      <div className="flex justify-between mt-4">
         <Link to="/typography" className="button button--green">
           Previous
         </Link>

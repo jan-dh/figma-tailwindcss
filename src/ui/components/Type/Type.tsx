@@ -32,29 +32,29 @@ const Type = () => {
 
   return (
     <>
-      <div className="w-full border-b border-gray-200 py-4">
+      <div className="w-full border-b border-slate-200 py-3">
         <h2 className="t-beta">Typography</h2>
         <p className="intro">Font families and font sizes</p>
       </div>
-      <h3 className="t-gamma mt-4">Font families</h3>
+      <h3 className="t-gamma mt-3">Font families</h3>
       {hasFamilies ? (
         <FontFamilies />
       ) : (
-        <div className="richtext mt-4">
+        <div className="richtext mt-2">
           <p>{emptyFamily}</p>
         </div>
       )}
-      <div className="mt-8">
+      <div className="mt-4">
         <h3 className="t-gamma">Font sizes</h3>
         {hasSizes ? (
           <FontSizes />
         ) : (
-          <div className="richtext mt-4">
+          <div className="richtext mt-2">
             <p>{emptySize}</p>
           </div>
         )}
       </div>
-      <div className="flex justify-between mt-8">
+      <div className="flex justify-between mt-4">
         <Link to="/colors" className="button button--green">
           Previous
         </Link>

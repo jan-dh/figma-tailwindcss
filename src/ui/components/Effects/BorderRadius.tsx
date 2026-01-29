@@ -5,12 +5,12 @@ interface BorderRadiusProps {
 
 const BorderRadius = ({ name, value }: BorderRadiusProps) => {
   return (
-    <div className="flex flex-col space-y-2">
-      <span className="block text-gray-700">{name}</span>
+    <div className="flex flex-col items-center text-center">
       <div
-        className="w-20 h-20 rounded bg-gray-200 border"
+        className="w-12 h-12 bg-slate-200"
         style={{ borderRadius: value }}
       ></div>
+      <span className="block text-slate-500 text-[10px] mt-1.5 truncate max-w-full">{name}</span>
     </div>
   )
 }

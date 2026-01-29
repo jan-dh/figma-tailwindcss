@@ -33,10 +33,9 @@ const theme: Theme = {
   },
 }
 
-const options = {
-  width: 740,
-  height: 600,
-}
+const UI_WIDTH = 420
+const UI_MIN_HEIGHT = 200
+const UI_MAX_HEIGHT = 600
 
 // Gather all different properties
 const paintStyles = getPaintStyles()
@@ -55,7 +54,15 @@ Promise.all([paintStyles, textStyles, effectStyles, nodeStyles])
   })
   .then(() => {
     // Show UI
-    figma.showUI(__html__, options)
+    figma.showUI(__html__, { width: UI_WIDTH, height: UI_MAX_HEIGHT })
     // Pass theme to UI
     figma.ui.postMessage(theme)
   })
+
+// Handle messages from UI
+figma.ui.onmessage = (msg: { type: string; height?: number }) => {
+  if (msg.type === 'resize' && typeof msg.height === 'number') {
+    const newHeight = Math.min(Math.max(msg.height, UI_MIN_HEIGHT), UI_MAX_HEIGHT)
+    figma.ui.resize(UI_WIDTH, newHeight)
+  }
+}

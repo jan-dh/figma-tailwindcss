@@ -37,11 +37,11 @@ const Colors = () => {
 
   return (
     <>
-      <div className="w-full border-b border-gray-200 py-4">
+      <div className="w-full border-b border-slate-200 py-3">
         <h2 className="t-beta">Colors</h2>
         <p className="intro">Pick and choose the colors you want to use</p>
       </div>
-      <div className="my-8 richtext">
+      <div className="my-4 richtext">
         <p>
           Colors are taken from the Figma Local Paint Styles. Colors can be grouped in
           the export step. If you want to group codes, prefix them with the same name
@@ -65,7 +65,7 @@ const Colors = () => {
         </div>
       )}
       {hasGradients ? (
-        <div className="my-8">
+        <div className="my-4">
           <div className="richtext">
             <h3 className="t-gamma">Gradients</h3>
             <p>
@@ -79,7 +79,7 @@ const Colors = () => {
         </div>
       ) : null}
       <NewColor key={nextIndex} index={nextIndex} onChange={handleColorChange} />
-      <div className="flex justify-between mt-8">
+      <div className="flex justify-between mt-4">
         <Link to="/" className="button button--green">
           Previous
         </Link>

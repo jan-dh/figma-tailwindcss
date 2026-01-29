@@ -42,13 +42,13 @@ const Export = () => {
   return (
     <>
       <div className="flex">
-        <div className="w-full border-b border-gray-200 py-4">
+        <div className="w-full border-b border-slate-200 py-3">
           <h2 className="t-beta">Export theme</h2>
           <p className="intro">Almost there...</p>
         </div>
       </div>
 
-      <div className="mt-8 relative">
+      <div className="mt-4 relative">
         <Highlight
           theme={themes.dracula}
           code={markup}
@@ -69,23 +69,23 @@ const Export = () => {
 
         {!isV4 && (
           <div
-            className="absolute top-0 right-0 mr-4 mt-4 flex items-center cursor-pointer"
+            className="absolute top-0 right-0 mr-3 mt-3 flex items-center cursor-pointer"
             onClick={groupColors}
           >
             <div
-              className={`switch w-12 h-6 rounded-full cursor-pointer mr-4 ${switchClass}`}
+              className={`switch w-10 h-5 rounded-full cursor-pointer mr-3 ${switchClass}`}
             >
               <div className="w-1/2 h-full rounded-full shadow bg-white"></div>
             </div>
-            <span className="text-gray-200 text-sm">{buttonText}</span>
+            <span className="text-slate-300 text-xs">{buttonText}</span>
           </div>
         )}
       </div>
 
-      <div className="mt-8 flex items-center">
-        <button className="button button--grey mr-4" onClick={exportTheme}>
+      <div className="mt-4 flex items-center">
+        <button className="button button--grey mr-3" onClick={exportTheme}>
           <svg
-            className="fill-current w-4 h-4 mr-2"
+            className="fill-current w-3.5 h-3.5 mr-1.5"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
           >
@@ -103,7 +103,7 @@ const Export = () => {
         </a>
       </div>
 
-      <div className="flex justify-between mt-8">
+      <div className="flex justify-between mt-4">
         <Link to="/effects" className="button button--green">
           Previous
         </Link>

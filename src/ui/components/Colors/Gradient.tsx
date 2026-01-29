@@ -4,9 +4,9 @@ interface GradientProps {
 
 function Gradient({ hex }: GradientProps) {
   return (
-    <div className="flex mt-4 justify-start items-center">
-      <div style={{ backgroundColor: hex }} className="color shadow"></div>
-      <div>{hex}</div>
+    <div className="flex mt-2 justify-start items-center">
+      <div style={{ backgroundColor: hex }} className="color shadow-sm"></div>
+      <div className="text-sm text-slate-600">{hex}</div>
     </div>
   )
 }

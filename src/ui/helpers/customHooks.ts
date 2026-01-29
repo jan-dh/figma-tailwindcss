@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import type { ChangeEvent } from 'react'
 import { useLocation } from 'react-router-dom'
 
@@ -18,4 +18,27 @@ export function ScrollToTop(): null {
   }, [pathname])
 
   return null
+}
+
+export function useAutoResize(): void {
+  const { pathname } = useLocation()
+
+  const updateHeight = useCallback(() => {
+    // Small delay to let content render
+    requestAnimationFrame(() => {
+      const height = document.body.scrollHeight
+      parent.postMessage({ pluginMessage: { type: 'resize', height } }, '*')
+    })
+  }, [])
+
+  useEffect(() => {
+    updateHeight()
+  }, [pathname, updateHeight])
+
+  useEffect(() => {
+    // Also resize on window resize and DOM changes
+    const observer = new ResizeObserver(updateHeight)
+    observer.observe(document.body)
+    return () => observer.disconnect()
+  }, [updateHeight])
 }
