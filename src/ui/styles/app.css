@@ -1,0 +1,226 @@
+@import "tailwindcss";
+
+@theme {
+  --color-code-black: #2a2734;
+  --color-code-green: #b5f4a5;
+  --color-code-yellow: #ffe484;
+  --color-code-purple: #d9a9ff;
+  --color-code-red: #ff8383;
+  --color-code-blue: #93ddfd;
+  --color-code-white: #fff;
+  --color-tailwind: #2e3748;
+}
+
+/* Base styles */
+html {
+  font-size: 100%;
+}
+
+body {
+  @apply bg-white p-0 m-0 font-sans leading-normal text-gray-900;
+}
+
+/* Typography utilities */
+@layer base {
+  .t-alpha {
+    @apply text-5xl;
+  }
+
+  .t-beta {
+    @apply text-2xl font-bold;
+  }
+
+  .t-gamma {
+    @apply text-xl text-gray-900 font-medium leading-tight;
+  }
+
+  .intro {
+    @apply text-gray-600;
+  }
+}
+
+/* Color swatch */
+.color {
+  height: 42px;
+  width: 42px;
+  min-width: 42px;
+  box-sizing: border-box;
+  @apply rounded mr-4 flex-shrink-0;
+}
+
+/* Code block */
+.code-block {
+  @apply bg-code-black rounded-lg p-4 text-sm;
+}
+
+/* Switch toggle */
+.switch > div {
+  @apply transition duration-100 ease-out;
+  transform: translateX(0%);
+}
+.switch.active > div {
+  transform: translateX(100%);
+}
+
+/* Form styles */
+.form-field {
+  @apply flex-1;
+}
+
+.form-label-wrapper {
+  @apply mb-2 flex flex-col items-start;
+}
+
+.form-label {
+  @apply leading-tight;
+}
+
+.form-instructions {
+  @apply text-sm;
+}
+
+.form-control {
+  @apply block w-full py-0 px-2 border border-gray-300 leading-normal rounded bg-white text-gray-900;
+  height: 44px;
+}
+
+.form-control:focus {
+  @apply outline-none border-black;
+}
+
+.form-control--textarea {
+  height: auto;
+}
+
+/* Button styles */
+.button {
+  @apply inline-flex justify-center items-center rounded-lg px-4 font-semibold leading-tight focus:outline-none active:shadow-md min-h-10;
+  transition: 0.15s ease-in;
+}
+
+.button--white {
+  @apply bg-white text-gray-800 font-semibold hover:bg-gray-100;
+}
+
+.button--grey {
+  @apply bg-gray-100 text-gray-800 font-bold hover:bg-gray-200;
+}
+
+.button--blue {
+  @apply bg-blue-400 text-white hover:bg-blue-500;
+}
+
+.button--green {
+  @apply bg-teal-500 text-white hover:bg-teal-600;
+}
+
+.button--disabled {
+  @apply bg-gray-400 text-white;
+}
+
+.text-link {
+  @apply text-blue-600 hover:text-blue-800;
+}
+
+/* Rich text styles */
+.richtext {
+  @apply text-gray-700;
+}
+
+.richtext h2:first-child,
+.richtext h3:first-child,
+.richtext p:first-child {
+  @apply mt-0;
+}
+
+.richtext p {
+  @apply mt-4;
+}
+
+.richtext h2 {
+  @apply text-2xl font-bold mt-4;
+}
+
+.richtext h3 {
+  @apply text-xl text-gray-900 font-medium leading-tight mt-4;
+}
+
+.richtext ul,
+.richtext ol {
+  @apply mt-4;
+}
+
+.richtext ol {
+  @apply list-decimal list-inside;
+}
+
+.richtext ul > li,
+.richtext ol > li {
+  @apply relative mt-2;
+}
+
+.richtext ul > li {
+  @apply pl-5;
+}
+
+.richtext ul > li:before {
+  content: '';
+  top: 9px;
+  left: 0;
+  border-radius: 50%;
+  width: 5px;
+  height: 5px;
+  @apply absolute bg-blue-600;
+}
+
+.richtext a {
+  @apply text-blue-600 underline;
+}
+
+.richtext a:hover {
+  @apply text-blue-800;
+}
+
+.richtext pre code {
+  @apply p-4 my-4 block overflow-auto text-sm leading-normal bg-gray-200 rounded;
+}
+
+.richtext code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+}
+
+/* Prism/Code highlighting - override prism-react-renderer theme */
+pre[class*='language-'] {
+  @apply p-4 rounded-lg text-sm font-mono;
+  background: #1d1f21 !important;
+  overflow: auto;
+  line-height: 1.5;
+}
+
+code[class*='language-'] {
+  @apply font-mono;
+  background: transparent !important;
+}
+
+/* Select styling */
+select {
+  @apply border border-gray-300 rounded p-2 bg-white text-gray-900;
+}
+
+select:focus {
+  @apply outline-none ring-1 ring-teal-500;
+}
+
+/* Radio button styling */
+input[type="radio"] {
+  @apply mr-1;
+}
+
+/* Grid gaps */
+.grid {
+  @apply gap-4;
+}
