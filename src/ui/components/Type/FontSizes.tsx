@@ -6,18 +6,8 @@ import { calculatePosition } from '../../helpers/helpers'
 const FontSizes = () => {
   const fontSizes = useThemeStore((s) => s.fontSize)
   const baseFontSize = useThemeStore((s) => s.baseFontSize)
-  const borderRadii = useThemeStore((s) => s.borderRadius)
   const setFontSize = useThemeStore((s) => s.setFontSize)
   const setBaseFontSize = useThemeStore((s) => s.setBaseFontSize)
-  const setBorderRadius = useThemeStore((s) => s.setBorderRadius)
-
-  const updateBorderRadii = (base: number) => {
-    const newRadii = borderRadii.map((radius, i) => ({
-      name: `rounded-${i}`,
-      value: `${Number(radius.value) / base}rem`,
-    }))
-    setBorderRadius(newRadii)
-  }
 
   const updateFontSizes = (e: ChangeEvent<HTMLSelectElement>) => {
     const basePosition = fontSizes.findIndex((x) => x.value === e.target.value)
@@ -29,7 +19,6 @@ const FontSizes = () => {
     }))
 
     setBaseFontSize(Number(e.target.value))
-    updateBorderRadii(Number(e.target.value))
     setFontSize(newFontSizes)
   }
 

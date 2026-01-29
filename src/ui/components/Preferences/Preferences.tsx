@@ -62,6 +62,32 @@ const Preferences = () => {
           <option value="oklch">OKLCH</option>
         </select>
       </div>
+      <div className="my-4 richtext">
+        <h3 className="t-gamma">Font size unit</h3>
+        <p>Choose whether font sizes should be converted to REM or kept as pixels.</p>
+        <div className="mt-2 space-x-4">
+          <label>
+            <input
+              type="radio"
+              name="useRem"
+              value="true"
+              checked={preferences.useRem === true}
+              onChange={() => updatePreference('useRem', true)}
+            />{' '}
+            REM (relative)
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="useRem"
+              value="false"
+              checked={preferences.useRem === false}
+              onChange={() => updatePreference('useRem', false)}
+            />{' '}
+            Pixels (absolute)
+          </label>
+        </div>
+      </div>
       <div className="flex justify-end mt-4">
         <Link to="/colors" className="button button--green">
           Next

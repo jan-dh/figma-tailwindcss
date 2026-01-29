@@ -8,10 +8,11 @@ const Export = () => {
   const theme = useThemeStore()
   const preferences = useThemeStore((s) => s.preferences)
   const setPreferences = useThemeStore((s) => s.setPreferences)
-  const { colorFormat, grouped, tailwindVersion } = preferences
+  const defaultBorderRadiusIndex = useThemeStore((s) => s.defaultBorderRadiusIndex)
+  const { colorFormat, grouped, tailwindVersion, useRem } = preferences
 
   const isV4 = tailwindVersion === '4'
-  const cleanTheme = cleanupTheme(theme, colorFormat, grouped)
+  const cleanTheme = cleanupTheme(theme, colorFormat, grouped, useRem, defaultBorderRadiusIndex)
 
   const groupColors = () => {
     if (isV4) return

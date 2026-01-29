@@ -194,6 +194,25 @@ Transform the spacious, bold UI into a compact, minimal shadcn-inspired design.
 7. **Dark mode** - Support Figma's dark theme
 8. **Undo/redo** - Allow reverting color changes
 
+## Phase 11: GitHub Issue Fixes ✅
+
+### Issue #53 - Option to Disable REM Conversion ✅
+- [x] Added `useRem` preference to types (`src/shared/types.ts`)
+- [x] Added default value in store (`src/ui/store/themeStore.ts`)
+- [x] Added radio toggle in Preferences (`src/ui/components/Preferences/Preferences.tsx`)
+- [x] Updated `cleanupTheme` to conditionally convert to REM or keep as px (`src/ui/helpers/helpers.ts`)
+- [x] Updated Export component to pass preference
+
+### Issue #64 - Border Radius Default Variant ✅
+- [x] Added `defaultBorderRadiusIndex` state to types and store
+- [x] Added `getBorderRadiusName` helper function for Tailwind naming convention (xs, sm, DEFAULT, lg, xl, 2xl, 3xl)
+- [x] Updated `cleanupTheme` to generate proper border radius names
+- [x] Updated BorderRadius component to be clickable for selecting DEFAULT
+- [x] Updated Effects component with selection UI and instructions
+- [x] Updated Tailwind 4 formatter to output `--radius` (no suffix) for DEFAULT
+
+---
+
 ### Functional Improvements
 9. **Color picker** - Inline color picker instead of hex input
 10. **Drag & drop** - Reorder colors

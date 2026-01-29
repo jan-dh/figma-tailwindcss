@@ -18,6 +18,7 @@ interface ThemeActions {
   setBoxShadow: (boxShadow: ShadowItem[]) => void
   setBorderRadius: (borderRadius: BorderRadiusItem[]) => void
   setBaseFontSize: (baseFontSize: number | false) => void
+  setDefaultBorderRadiusIndex: (index: number | null) => void
   setPreferences: (preferences: Partial<Preferences>) => void
   updateColor: (index: number, color: ColorItem) => void
   removeColor: (index: number) => void
@@ -27,6 +28,7 @@ const defaultPreferences: Preferences = {
   tailwindVersion: '4',
   colorFormat: 'hex',
   grouped: false,
+  useRem: true,
 }
 
 export const useThemeStore = create<ThemeState & ThemeActions>((set) => ({
@@ -38,6 +40,7 @@ export const useThemeStore = create<ThemeState & ThemeActions>((set) => ({
   boxShadow: [],
   borderRadius: [],
   baseFontSize: false,
+  defaultBorderRadiusIndex: null,
   preferences: defaultPreferences,
 
   // Actions
@@ -64,6 +67,8 @@ export const useThemeStore = create<ThemeState & ThemeActions>((set) => ({
   setBorderRadius: (borderRadius) => set({ borderRadius }),
 
   setBaseFontSize: (baseFontSize) => set({ baseFontSize }),
+
+  setDefaultBorderRadiusIndex: (index) => set({ defaultBorderRadiusIndex: index }),
 
   setPreferences: (prefs) =>
     set((state) => ({

@@ -27,6 +27,7 @@ export interface Preferences {
   tailwindVersion: '3' | '4'
   colorFormat: 'hex' | 'rgba' | 'hsl' | 'oklch' | 'oklab'
   grouped: boolean
+  useRem: boolean
 }
 
 export interface ThemeState {
@@ -37,6 +38,7 @@ export interface ThemeState {
   boxShadow: ShadowItem[]
   borderRadius: BorderRadiusItem[]
   baseFontSize: number | false
+  defaultBorderRadiusIndex: number | null
   preferences: Preferences
 }
 

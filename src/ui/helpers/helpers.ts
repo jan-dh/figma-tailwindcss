@@ -26,6 +26,40 @@ export function calculatePosition(index: number, basePosition: number, length: n
   return value
 }
 
+export function getBorderRadiusName(
+  index: number,
+  defaultIndex: number | null,
+  total: number
+): string {
+  // If no default selected, use numeric naming
+  if (defaultIndex === null) {
+    return String(index)
+  }
+
+  const offset = index - defaultIndex
+
+  if (offset === 0) return 'DEFAULT'
+  if (offset === -1) return 'sm'
+  if (offset === -2) return 'xs'
+  if (offset === 1) return 'lg'
+  if (offset === 2) return 'xl'
+  if (offset === 3) return '2xl'
+  if (offset === 4) return '3xl'
+
+  // For values smaller than xs
+  if (offset < -2) {
+    const xsCount = Math.abs(offset) - 1
+    return `${xsCount}xs`
+  }
+
+  // For values larger than 3xl
+  if (offset > 4) {
+    return `${offset - 1}xl`
+  }
+
+  return String(index)
+}
+
 export function getPart(name: string, i: number): string {
   let cleanName = name
   const parts = name.split('/')
@@ -59,7 +93,9 @@ export function groupColors(colors: ColorItem[]): Record<string, string | Record
 export function cleanupTheme(
   theme: ThemeState,
   colorFormat: string,
-  grouped: boolean
+  grouped: boolean,
+  useRem: boolean = true,
+  defaultBorderRadiusIndex: number | null = null
 ): CleanTheme {
   const cleanTheme: CleanTheme = {}
 
@@ -86,7 +122,9 @@ export function cleanupTheme(
   if (theme.fontSize.length > 0) {
     cleanTheme.fontSize = Object.assign(
       {},
-      ...theme.fontSize.map(({ name, value }) => ({ [name]: `${Number(value) / 16}rem` }))
+      ...theme.fontSize.map(({ name, value }) => ({
+        [name]: useRem ? `${Number(value) / 16}rem` : `${value}px`,
+      }))
     )
   }
 
@@ -102,7 +140,14 @@ export function cleanupTheme(
   if (theme.borderRadius.length > 0) {
     cleanTheme.borderRadius = Object.assign(
       {},
-      ...theme.borderRadius.map(({ name, value }) => ({ [name]: String(value) }))
+      ...theme.borderRadius.map(({ name, value }, index) => {
+        const radiusName =
+          name || getBorderRadiusName(index, defaultBorderRadiusIndex, theme.borderRadius.length)
+        // Convert to rem or keep as px based on preference
+        const numValue = typeof value === 'number' ? value : parseFloat(String(value))
+        const radiusValue = useRem ? `${numValue / 16}rem` : `${numValue}px`
+        return { [radiusName]: radiusValue }
+      })
     )
   }
 
@@ -184,7 +229,9 @@ export function formatTailwind4Theme(cleanTheme: CleanTheme): string {
 
     if (section === 'borderRadius') {
       for (const [key, val] of Object.entries(values)) {
-        lines.push(`  --radius-${key}: ${val};`)
+        // DEFAULT becomes --radius (no suffix), others get the key as suffix
+        const varName = key === 'DEFAULT' ? '--radius' : `--radius-${key}`
+        lines.push(`  ${varName}: ${val};`)
       }
       continue
     }
